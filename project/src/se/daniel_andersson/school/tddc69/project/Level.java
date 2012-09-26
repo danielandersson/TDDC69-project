@@ -1,8 +1,6 @@
 package se.daniel_andersson.school.tddc69.project;
 
 
-import javafx.application.Platform;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
