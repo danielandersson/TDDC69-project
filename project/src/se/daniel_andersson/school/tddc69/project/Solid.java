@@ -15,7 +15,7 @@ public abstract class Solid extends GameObject {
     }
 
     public void collision() {
-        player.die();
+       //player.die();
     }
 
 

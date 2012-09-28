@@ -24,8 +24,8 @@ public class GraphicalViewer extends JComponent {
 
     private void paintPlayer(final Graphics2D g2) {
         g2.setColor(Color.PINK);
-        int XMath = tileWidth*mainGame.getPlayer().getXCoord();
-        int YMath = HEIGHT - tileHeight*(mainGame.getPlayer().getYCoord()+1);
+        int XMath = mainGame.getPlayer().getXCoord();
+        int YMath = HEIGHT - (mainGame.getPlayer().getYCoord()+1);
         g2.fill(new Rectangle2D.Double(XMath, YMath, tileWidth, tileHeight));
     }
     private void paintMap(final Graphics2D g2) {

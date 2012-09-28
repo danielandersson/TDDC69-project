@@ -6,6 +6,8 @@ public class Player {
     private int XCoord;
     private int YCoord;
 
+    private int speed = 5;
+
     public Player(int XCoord) {
         this.XCoord = XCoord;
         this.YCoord = 0;
@@ -24,12 +26,15 @@ public class Player {
         return YCoord;
     }
     public void moveRight() {
-        XCoord++;
+        XCoord = XCoord + speed;
     }
     public void moveLeft() {
-        XCoord--;
+        XCoord = XCoord - speed;
     }
     public void moveUp() {
-        YCoord++;
+        YCoord = YCoord + speed;
+    }
+    public void moveDown() {
+        YCoord = YCoord - speed;
     }
 }

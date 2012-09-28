@@ -8,6 +8,7 @@ public class Game {
 
     public Game() {
         currentLevel = new Level(1);
+        System.out.println(currentLevel.getWidth()/2);
         player = new Player(currentLevel.getWidth()/2);
         player.moveLeft();
         player.moveLeft();
