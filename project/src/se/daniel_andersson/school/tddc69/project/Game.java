@@ -8,14 +8,24 @@ public class Game {
 
     public Game() {
         currentLevel = new Level(1);
-        System.out.println(currentLevel.getWidth()/2);
-        player = new Player(currentLevel.getWidth()/2);
+        player = new Player(150);
         player.moveLeft();
         player.moveLeft();
         player.moveLeft();
         player.moveLeft();
         player.moveLeft();
         player.moveUp();
+    }
+
+    public boolean gameOver() {
+        if(currentLevel.reachedEnd())
+            return true;
+        else
+            return false;
+    }
+
+    public void gameTick() {
+        currentLevel.updateLevelIndex();
     }
 
 

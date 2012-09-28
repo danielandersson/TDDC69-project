@@ -21,28 +21,28 @@ public class GameFrame extends JFrame {
         final Action moveUp = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("UP");
+                //System.out.println("UP");
                 mainGame.getPlayer().moveUp();
             }
         };
         final Action moveLeft = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("LEFT");
+                //System.out.println("LEFT");
                 mainGame.getPlayer().moveLeft();
             }
         };
         final Action moveRight = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("RIGHT");
+                //System.out.println("RIGHT");
                 mainGame.getPlayer().moveRight();
             }
         };
         final Action moveDown = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("DOWN");
+                //System.out.println("DOWN");
                 mainGame.getPlayer().moveDown();
             }
         };

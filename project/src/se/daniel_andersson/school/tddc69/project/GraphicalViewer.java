@@ -17,8 +17,8 @@ public class GraphicalViewer extends JComponent {
 
     public GraphicalViewer(Game mainGame) {
         this.mainGame = mainGame;
-        tileWidth = WIDTH/mainGame.getLevel().getWidth();
-        tileHeight = HEIGHT/mainGame.getLevel().getHeight();
+        tileWidth = WIDTH/mainGame.getLevel().getLevelWidth();
+        tileHeight = HEIGHT/mainGame.getLevel().paintHeight;
     }
 
 
@@ -29,10 +29,10 @@ public class GraphicalViewer extends JComponent {
         g2.fill(new Rectangle2D.Double(XMath, YMath, tileWidth, tileHeight));
     }
     private void paintMap(final Graphics2D g2) {
-        for (int i = 0; i < mainGame.getLevel().getHeight(); i++) {
-            for (int j = 0; j < mainGame.getLevel().getWidth(); j++) {
+        for (int i = mainGame.getLevel().getTopIndex(); i < mainGame.getLevel().getBottomIndex(); i++) {
+            for (int j = 0; j < mainGame.getLevel().getLevelWidth(); j++) {
                 int XMath = tileWidth*j;
-                int YMath = tileHeight*i;
+                int YMath = tileHeight*(i-mainGame.getLevel().getTopIndex());
                 if (mainGame.getLevel().getMap()[i][j] == '#') {
                     g2.setColor(Color.ORANGE);
                     g2.fill(new Rectangle2D.Double(XMath, YMath, tileWidth, tileHeight));

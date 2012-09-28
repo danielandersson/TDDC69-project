@@ -15,6 +15,8 @@ public class TestGame {
         final Action doOneStep = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!mainGame.gameOver())
+                    mainGame.gameTick();
                 gameFrame.rePaint();
             }
         };
