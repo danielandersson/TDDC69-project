@@ -6,18 +6,24 @@ public class Player {
     private int XCoord;
     private int YCoord;
 
-    private int speed = 5;
+    private boolean alive;
+
+    private int speed = 1;
 
     public Player(int XCoord) {
         this.XCoord = XCoord;
         this.YCoord = 0;
+        alive = true;
     }
 
     public Player(int XCoord, int YCoord) {
         this.XCoord = XCoord;
         this.YCoord = YCoord;
+        alive = true;
     }
-
+    public boolean isAlive() {
+        return alive;
+    }
 
     public int getXCoord() {
         return XCoord;

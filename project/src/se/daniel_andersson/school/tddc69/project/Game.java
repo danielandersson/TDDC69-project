@@ -18,6 +18,14 @@ public class Game {
     }
 
     public boolean gameOver() {
+        if(player.isAlive())
+            return false;
+        else
+            return true;
+    }
+
+
+    public boolean levelComplete(){
         if(currentLevel.reachedEnd())
             return true;
         else

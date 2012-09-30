@@ -15,12 +15,12 @@ public class TestGame {
         final Action doOneStep = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!mainGame.gameOver())
+                if(!mainGame.gameOver() || !mainGame.levelComplete())
                     mainGame.gameTick();
-                gameFrame.rePaint();
+                gameFrame.repaint();
             }
         };
-        clockTimer = new Timer(10, doOneStep);
+        clockTimer = new Timer(100, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
     }

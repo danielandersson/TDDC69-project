@@ -47,6 +47,7 @@ public class GameFrame extends JFrame {
             }
         };
 
+
         graphicalViewer.getInputMap().put(KeyStroke.getKeyStroke("UP"), "moveUp");
         graphicalViewer.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
         graphicalViewer.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
@@ -59,7 +60,7 @@ public class GameFrame extends JFrame {
         super.pack();
     }
 
-    public void rePaint() {
+    public void repaint() {
         graphicalViewer.repaint();
     }
 }
