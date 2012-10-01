@@ -1,10 +1,12 @@
 package se.daniel_andersson.school.tddc69.project;
 
 
+import java.awt.*;
 
 public abstract class GameObject {
-    int XCoord = 0;
-    int YCoord = 0;
 
-    public abstract void collision();
+    public abstract void collision(Player p);
+
+    public abstract Color paintColor();
+
 }

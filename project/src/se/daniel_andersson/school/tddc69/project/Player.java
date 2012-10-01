@@ -6,15 +6,19 @@ public class Player {
     private int XCoord;
     private int YCoord;
 
+    public boolean isLevelAdvance() {
+        return levelAdvance;
+    }
+
+    public void setLevelAdvance(boolean levelAdvance) {
+        this.levelAdvance = levelAdvance;
+    }
+
+    private boolean levelAdvance = false;
+
     private boolean alive;
 
-    private int speed = 1;
-
-    public Player(int XCoord) {
-        this.XCoord = XCoord;
-        this.YCoord = 0;
-        alive = true;
-    }
+    private int speed = 5;
 
     public Player(int XCoord, int YCoord) {
         this.XCoord = XCoord;
@@ -25,6 +29,10 @@ public class Player {
         return alive;
     }
 
+    public void die() {
+        alive = false;
+    }
+
     public int getXCoord() {
         return XCoord;
     }
@@ -32,15 +40,19 @@ public class Player {
         return YCoord;
     }
     public void moveRight() {
-        XCoord = XCoord + speed;
+        if (isAlive())
+            XCoord = XCoord + speed;
     }
     public void moveLeft() {
-        XCoord = XCoord - speed;
+        if (isAlive())
+            XCoord = XCoord - speed;
     }
     public void moveUp() {
-        YCoord = YCoord + speed;
+        if (isAlive())
+            YCoord = YCoord + speed;
     }
     public void moveDown() {
-        YCoord = YCoord - speed;
+        if (isAlive())
+            YCoord = YCoord - speed;
     }
 }

@@ -3,13 +3,14 @@ package se.daniel_andersson.school.tddc69.project;
 
 import java.awt.*;
 
-public class Stone extends Solid {
+public class Oil extends Liquid {
 
-    public Stone(){
+    public Oil(){
     }
 
     @Override
     public Color paintColor() {
-        return Color.GRAY;
+        return Color.BLACK;
     }
+
 }

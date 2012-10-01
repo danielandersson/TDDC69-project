@@ -3,14 +3,12 @@ package se.daniel_andersson.school.tddc69.project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
 
 public class GraphicalViewer extends JComponent {
-    public static final int WIDTH = 300;
-    public static final int HEIGHT = 600;
-
-    private int tileWidth;
-    private int tileHeight;
+    public static int WIDTH;// = 300;
+    public static int HEIGHT;// = 600;
 
     private static Game mainGame;
 
@@ -18,8 +16,8 @@ public class GraphicalViewer extends JComponent {
 
     public GraphicalViewer(Game mainGame) {
         this.mainGame = mainGame;
-        tileWidth = WIDTH/mainGame.getLevel().getLevelWidth();
-        tileHeight = HEIGHT/mainGame.getLevel().paintHeight;
+        HEIGHT = mainGame.getLevel().screenHeight * mainGame.getLevel().getTileHeight();
+        WIDTH = mainGame.getLevel().getLevelWidth() * mainGame.getLevel().getTileWidth();
     }
 
 
@@ -27,23 +25,22 @@ public class GraphicalViewer extends JComponent {
         g2.setColor(Color.PINK);
         int XMath = mainGame.getPlayer().getXCoord();
         int YMath = HEIGHT - (mainGame.getPlayer().getYCoord()+1);
-        g2.fill(new Rectangle2D.Double(XMath, YMath, tileWidth, tileHeight));
+        g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
     }
 
     private void paintMap(final Graphics2D g2) {
         for (int i = mainGame.getLevel().getTopIndex(); i <= mainGame.getLevel().getBottomIndex(); i++) {
             for (int j = 0; j < mainGame.getLevel().getLevelWidth(); j++) {
-                int XMath = tileWidth*j;
-                int YMath = tileHeight*(i-mainGame.getLevel().getTopIndex());
-                if (mainGame.getLevel().getMap()[i][j] == '#') {
-                    g2.setColor(Color.ORANGE);
-                    g2.fill(new Rectangle2D.Double(XMath, YMath, tileWidth, tileHeight));
-                    g2.setColor(Color.BLACK);
-                    g2.drawString(Integer.toString(YMath), XMath, YMath);
+                int XMath = mainGame.getLevel().getTileWidth()*j;
+                int YMath = mainGame.getLevel().getTileHeight()*(i-mainGame.getLevel().getTopIndex())+mainGame.getLevel().innerTile;
+                if (mainGame.getLevel().getMap()[i][j] != null) {
+                    g2.setColor(mainGame.getLevel().getMap()[i][j].paintColor());
+                    g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
                 }
             }
         }
     }
+
     private void paintDebug(final Graphics2D g2) {
         int XMath = mainGame.getPlayer().getXCoord();
         int YMath = mainGame.getPlayer().getYCoord()-mainGame.getLevel().getTopIndex();
@@ -56,6 +53,7 @@ public class GraphicalViewer extends JComponent {
 
         g2.drawString("LevelComplete: " + mainGame.levelComplete(), 5, 65);
         g2.drawString("GameOver?: " + mainGame.gameOver(), 5, 75);
+        g2.drawString("LevelsCompleted: " + mainGame.getLevelsCompleted(), 5, 85);
     }
 
 

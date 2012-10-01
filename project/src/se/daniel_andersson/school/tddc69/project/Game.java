@@ -6,15 +6,15 @@ public class Game {
     private Player player;
     private Level currentLevel;
 
+    public int getLevelsCompleted() {
+        return levelsCompleted;
+    }
+
+    private int levelsCompleted;
+
     public Game() {
         currentLevel = new Level(1);
-        player = new Player(150);
-        player.moveLeft();
-        player.moveLeft();
-        player.moveLeft();
-        player.moveLeft();
-        player.moveLeft();
-        player.moveUp();
+        player = new Player((currentLevel.getTileWidth()*currentLevel.getLevelWidth())/2 - currentLevel.getTileWidth()/2, currentLevel.getTileHeight());
     }
 
     public boolean gameOver() {
@@ -33,11 +33,17 @@ public class Game {
     }
 
     public void gameTick() {
-        currentLevel.updateLevelIndex();
+        if (player.isLevelAdvance()) {
+            levelsCompleted++;
+            currentLevel = new Level(1);
+            player.setLevelAdvance(false);
+        }
+        else {
+            currentLevel.collision(player);
+            if (!levelComplete())
+                currentLevel.updateLevelIndex();
+        }
     }
-
-
-
 
     public Level getLevel() {
         return currentLevel;
