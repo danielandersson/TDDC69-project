@@ -1,6 +1,7 @@
 package se.daniel_andersson.school.tddc69.project;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -10,41 +11,36 @@ public class StateManager {
 
     private int currentState;
 
-    public StateManager() {
+    private JFrame gameFrame;
+
+    public StateManager(JFrame j){
+        gameFrame = j;
         states = new ArrayList<State>();
         initAllStates();
     }
 
-    private void initAllStates() {
+    private void initAllStates(){
         //TODO Add states
         states.add(new MenuState());
-    }
-    public void addState(State s){
-        states.add(s);
+        states.add(new GameState());
     }
 
-    public void startCurrentState() {
+    public void startCurrentState(){
+        gameFrame.add(states.get(currentState));
         states.get(currentState).start();
     }
-    public void stopCurrentState() {
+
+    public void stopCurrentState(){
+        gameFrame.remove(states.get(currentState));
         states.get(currentState).stop();
     }
 
-    public void setCurrentState(String s) {
-        for(State state : states){
-            if (s.equals(state.name)) {
-                currentState = states.indexOf(state);
+    public void setCurrentState(String s){
+        for(int i = 0; i < states.size(); i++){
+            if(s.equals(states.get(i).name)){
+                currentState = i;
             }
         }
-    }
-
-    public void updateState(){
-        states.get(currentState).update();
-    }
-
-    public void renderCurrentState(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.drawImage(states.get(currentState).screen, 0, 0, GraphicalViewer.WIDTH, GraphicalViewer.HEIGHT, null);
     }
 
 }

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class TestGame {
 
+
     public static void main(String[] args) {
         final Game mainGame = new Game();
         final GameFrame gameFrame = new GameFrame(mainGame);

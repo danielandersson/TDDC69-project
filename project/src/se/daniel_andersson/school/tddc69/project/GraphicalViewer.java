@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
 
 public class GraphicalViewer extends JComponent {
-    public static int WIDTH;// = 300;
-    public static int HEIGHT;// = 600;
+    public static int WIDTH;
+    public static int HEIGHT;
 
     private static Game mainGame;
 
@@ -25,17 +25,25 @@ public class GraphicalViewer extends JComponent {
         g2.setColor(Color.PINK);
         int XMath = mainGame.getPlayer().getXCoord();
         int YMath = HEIGHT - (mainGame.getPlayer().getYCoord()+1);
-        g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
+        //g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
+        g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight(), null);
     }
 
     private void paintMap(final Graphics2D g2) {
-        for (int i = mainGame.getLevel().getTopIndex(); i <= mainGame.getLevel().getBottomIndex(); i++) {
+        int k = 0;
+        if (mainGame.getLevel().getTopIndex() > 0)
+            k = 1;
+        for (int i = mainGame.getLevel().getTopIndex()-k; i <= mainGame.getLevel().getBottomIndex(); i++) {
             for (int j = 0; j < mainGame.getLevel().getLevelWidth(); j++) {
                 int XMath = mainGame.getLevel().getTileWidth()*j;
                 int YMath = mainGame.getLevel().getTileHeight()*(i-mainGame.getLevel().getTopIndex())+mainGame.getLevel().innerTile;
                 if (mainGame.getLevel().getMap()[i][j] != null) {
-                    g2.setColor(mainGame.getLevel().getMap()[i][j].paintColor());
-                    g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
+                    if (mainGame.getLevel().getRawMap()[i][j] == '&') {
+                        g2.drawImage(mainGame.getLevel().getMap()[i][j].getTexture(), XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight(), null);
+                    } else {
+                        g2.setColor(mainGame.getLevel().getMap()[i][j].paintColor());
+                        g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
+                    }
                 }
             }
         }

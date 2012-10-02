@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame(final Game mainGame) {
         super("Projectname");
-        super.setDefaultCloseOperation(super.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setLayout(new BorderLayout());
         this.mainGame = mainGame;
         graphicalViewer = new GraphicalViewer(mainGame);
@@ -55,7 +55,6 @@ public class GameFrame extends JFrame {
 
         super.pack();
     }
-
     public void repaint() {
         graphicalViewer.repaint();
     }
