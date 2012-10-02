@@ -9,10 +9,6 @@ public class Game {
     private Player player;
     private Level currentLevel;
 
-    public int getLevelsCompleted() {
-        return levelsCompleted;
-    }
-
     private int levelsCompleted;
 
     public Game() {
@@ -27,6 +23,9 @@ public class Game {
             return true;
     }
 
+    public int getLevelsCompleted() {
+        return levelsCompleted;
+    }
 
     public boolean levelComplete(){
         if(currentLevel.reachedEnd())
