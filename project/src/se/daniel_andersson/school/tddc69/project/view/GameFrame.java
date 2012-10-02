@@ -1,5 +1,7 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.view;
 
+
+import se.daniel_andersson.school.tddc69.project.controller.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +54,6 @@ public class GameFrame extends JFrame {
         graphicalViewer.getActionMap().put("moveLeft", moveLeft);
         graphicalViewer.getActionMap().put("moveRight", moveRight);
         graphicalViewer.getActionMap().put("moveDown", moveDown);
-
         super.pack();
     }
     public void repaint() {

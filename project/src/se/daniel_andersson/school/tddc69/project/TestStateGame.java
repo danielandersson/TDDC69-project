@@ -4,13 +4,13 @@ package se.daniel_andersson.school.tddc69.project;
 import javax.swing.*;
 import java.awt.Graphics;
 
-public class TestStateGame{
+public class TestStateGame extends JFrame{
 
 
     public static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
     StateManager sm;
-    /*
+
     public TestStateGame(){
         setSize(GAME_WIDTH, GAME_HEIGHT);
         setVisible(true);
@@ -24,12 +24,13 @@ public class TestStateGame{
         sm = new StateManager(this);
         sm.setCurrentState("GameState");
         sm.startCurrentState();
-    }*/
+    }
+    /*
     public TestStateGame() {
         sm = new StateManager(new StateFrame());
         sm.setCurrentState("GameState");
         sm.startCurrentState();
-    }
+    }*/
 
 
 

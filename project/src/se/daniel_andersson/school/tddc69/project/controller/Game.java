@@ -1,5 +1,8 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.controller;
 
+
+import se.daniel_andersson.school.tddc69.project.model.Level;
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 public class Game {
 
@@ -14,7 +17,7 @@ public class Game {
 
     public Game() {
         currentLevel = new Level(1);
-        player = new Player((currentLevel.getTileWidth()*currentLevel.getLevelWidth())/2 - currentLevel.getTileWidth()/2, currentLevel.getTileHeight());
+        player = new Player(currentLevel.getTileWidth()*currentLevel.getStartX(), currentLevel.getTileHeight()*currentLevel.getStartY());
     }
 
     public boolean gameOver() {
@@ -35,7 +38,9 @@ public class Game {
     public void gameTick() {
         if (player.isLevelAdvance()) {
             levelsCompleted++;
-            currentLevel = new Level(1);
+            currentLevel = new Level(2);
+            player.setXCoord(currentLevel.getTileWidth()*currentLevel.getStartX());
+            player.setYCoord(currentLevel.getTileHeight()*currentLevel.getStartY());
             player.setLevelAdvance(false);
         }
         else {

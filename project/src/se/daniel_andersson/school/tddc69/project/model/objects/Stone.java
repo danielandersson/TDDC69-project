@@ -1,5 +1,7 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.model.objects;
 
+
+import se.daniel_andersson.school.tddc69.project.model.Solid;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,6 +14,10 @@ public class Stone extends Solid {
 
     public BufferedImage getTexture() {
         return texture;
+    }
+
+    @Override
+    public void destroy() {
     }
 
     @Override

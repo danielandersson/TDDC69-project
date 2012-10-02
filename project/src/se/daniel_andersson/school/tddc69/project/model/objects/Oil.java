@@ -1,5 +1,9 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.model.objects;
 
+
+import se.daniel_andersson.school.tddc69.project.model.GameObject;
+import se.daniel_andersson.school.tddc69.project.model.Liquid;
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,7 +17,7 @@ public class Oil extends Liquid {
 
     public Oil(){
         try {
-            File file = new File(getClass().getResource("img/oil.png").getFile());
+            File file = new File(getClass().getResource("../../img/oil.png").getFile());
             texture = ImageIO.read(file);
         } catch (IOException e) {
             System.out.println("You failed.");
@@ -22,6 +26,14 @@ public class Oil extends Liquid {
 
     public BufferedImage getTexture() {
         return texture;
+    }
+
+    @Override
+    public void collision(Player object) {
+    }
+
+    @Override
+    public void destroy() {
     }
 
     @Override
