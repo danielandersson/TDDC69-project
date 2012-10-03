@@ -1,7 +1,8 @@
-package se.daniel_andersson.school.tddc69.project.view;
+package se.daniel_andersson.school.tddc69.project.controller;
 
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
+import se.daniel_andersson.school.tddc69.project.view.GraphicalViewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,25 +24,29 @@ public class GameFrame extends JFrame {
         final Action moveUp = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainGame.getPlayer().moveUp();
+                if (mainGame.getPlayer().getYCoord() < mainGame.getLevel().getScreenHeight()*mainGame.getLevel().getTileHeight())
+                    mainGame.getPlayer().moveUp();
             }
         };
         final Action moveLeft = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainGame.getPlayer().moveLeft();
+                if (mainGame.getPlayer().getYCoord() > 0)
+                    mainGame.getPlayer().moveLeft();
             }
         };
         final Action moveRight = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainGame.getPlayer().moveRight();
+                if (mainGame.getPlayer().getYCoord() < mainGame.getLevel().getLevelWidth()*mainGame.getLevel().getTileWidth())
+                    mainGame.getPlayer().moveRight();
             }
         };
         final Action moveDown = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainGame.getPlayer().moveDown();
+                if (mainGame.getPlayer().getYCoord() > mainGame.getLevel().getTileHeight())
+                    mainGame.getPlayer().moveDown();
             }
         };
 

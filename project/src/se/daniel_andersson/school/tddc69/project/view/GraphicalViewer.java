@@ -28,7 +28,6 @@ public class GraphicalViewer extends JComponent {
         int YMath = HEIGHT - (mainGame.getPlayer().getYCoord()+1);
         g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight(), null);
     }
-
     private void paintMap(final Graphics2D g2) {
         int k = 0;
         if (mainGame.getLevel().getTopIndex() > 0)
@@ -38,9 +37,9 @@ public class GraphicalViewer extends JComponent {
                 int XMath = mainGame.getLevel().getTileWidth()*j;
                 int YMath = mainGame.getLevel().getTileHeight()*(i-mainGame.getLevel().getTopIndex())+mainGame.getLevel().getInnerTile();
                 if (mainGame.getLevel().getMap()[i][j] != null) {
-                    if (mainGame.getLevel().getMap()[i][j].getClass().toString().contains("Oil")) {
+                    if (mainGame.getLevel().getMap()[i][j].getTexture() != null)
                         g2.drawImage(mainGame.getLevel().getMap()[i][j].getTexture(), XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight(), null);
-                    } else {
+                    else {
                         g2.setColor(mainGame.getLevel().getMap()[i][j].paintColor());
                         g2.fill(new Rectangle2D.Double(XMath, YMath, mainGame.getLevel().getTileWidth(), mainGame.getLevel().getTileHeight()));
                     }
@@ -48,7 +47,6 @@ public class GraphicalViewer extends JComponent {
             }
         }
     }
-
     private void paintDebug(final Graphics2D g2) {
         int XMath = mainGame.getPlayer().getXCoord();
         int YMath = mainGame.getPlayer().getYCoord()-mainGame.getLevel().getTopIndex();
@@ -64,13 +62,30 @@ public class GraphicalViewer extends JComponent {
         g2.drawString("GameOver?: " + mainGame.gameOver(), 5, 85);
         g2.drawString("LevelsCompleted: " + mainGame.getLevelsCompleted(), 5, 95);
     }
+    private void paintInfo(final Graphics2D g2) {
+        g2.setColor(Color.RED);
+        for (int i = mainGame.getPlayer().getLife(); i > 0; i--) {
+            g2.drawString("<3", 10+(i*15), mainGame.getLevel().getScreenHeight()*(mainGame.getLevel().getTileHeight()-1));
+        }
+    }
+    private void paintDead(final Graphics2D g2) {
+        g2.setColor(Color.BLACK);
+        g2.fill(super.getBounds());
+        g2.setColor(Color.RED);
+        g2.drawString("YOU ARE DEAD!", (mainGame.getLevel().getTileWidth()/2)*mainGame.getLevel().getTileWidth(), (mainGame.getLevel().getScreenHeight()/2)*mainGame.getLevel().getTileHeight());
+    }
 
 
     @Override
     public void paintComponent(final Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        paintMap(g2);
-        paintPlayer(g2);
+        if (mainGame.getPlayer().isAlive()) {
+            paintMap(g2);
+            paintPlayer(g2);
+            paintInfo(g2);
+        }
+        else
+            paintDead(g2);
         paintDebug(g2);
     }
 

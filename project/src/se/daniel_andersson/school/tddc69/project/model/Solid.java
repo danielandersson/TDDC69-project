@@ -10,7 +10,7 @@ public abstract class Solid extends GameObject {
     }
 
     public void collision(Player object) {
-        object.die();
+        object.takeDamage();
         System.out.println("Åker igenom solid");
     }
 }

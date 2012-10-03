@@ -146,6 +146,7 @@ public class Level {
 
     private void parseMeta() throws IOException {
         File file = new File("level/"+ID+".meta");
+        System.out.println(file.getAbsolutePath());
         if (!file.exists()) {
             throw new IOException();
         }
