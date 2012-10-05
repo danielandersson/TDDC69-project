@@ -6,18 +6,37 @@ import se.daniel_andersson.school.tddc69.project.controller.Game;
 import javax.swing.*;
 import java.awt.*;
 
-public class GraphicalViewer extends JComponent {
+public class GraphicalStateViewer extends JComponent {
+
     public static int WIDTH;
     public static int HEIGHT;
-
     private final Game mainGame;
 
-
-
-    public GraphicalViewer(Game mainGame) {
-        this.mainGame = mainGame;
+    public GraphicalStateViewer(Game game) {
+        this.mainGame = game;
         HEIGHT = mainGame.getLevel().getScreenHeight() * mainGame.getLevel().getTileHeight();
         WIDTH = mainGame.getLevel().getLevelWidth() * mainGame.getLevel().getTileWidth();
+    }
+
+
+    @Override
+    public void paintComponent(final Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(Color.YELLOW);
+        g2.drawString("ASDASDASASSDSDGFDJDJDFJDJdJK", 100, 100);
+        if (mainGame.getPlayer().isAlive()) {
+            paintMap(g2);
+            paintPlayer(g2);
+            paintInfo(g2);
+        }
+        else
+            paintDead(g2);
+        paintDebug(g2);
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(WIDTH, HEIGHT);
     }
 
     private void paintPlayer(final Graphics2D g2) {
@@ -44,7 +63,7 @@ public class GraphicalViewer extends JComponent {
     private void paintDebug(final Graphics2D g2) {
         int XMath = mainGame.getPlayer().getXCoord();
         int YMath = mainGame.getPlayer().getYCoord()-mainGame.getLevel().getTopIndex();
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.BLUE);
         g2.drawString("Player X: " + mainGame.getPlayer().getXCoord() + " Relative: " + XMath, 5, 15);
         g2.drawString("Player Y: " + mainGame.getPlayer().getYCoord() + " Relative: " + YMath, 5, 25);
         g2.drawString("Player Mode: " + mainGame.getPlayer().getCurrentMode().getClass().getSimpleName(), 5, 35);
@@ -67,25 +86,6 @@ public class GraphicalViewer extends JComponent {
         g2.fill(super.getBounds());
         g2.setColor(Color.RED);
         g2.drawString("YOU ARE DEAD!", (mainGame.getLevel().getTileWidth()/2)*mainGame.getLevel().getTileWidth(), (mainGame.getLevel().getScreenHeight()/2)*mainGame.getLevel().getTileHeight());
-    }
-
-
-    @Override
-    public void paintComponent(final Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
-        if (mainGame.getPlayer().isAlive()) {
-            paintMap(g2);
-            paintPlayer(g2);
-            paintInfo(g2);
-        }
-        else
-            paintDead(g2);
-        paintDebug(g2);
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(WIDTH, HEIGHT);
     }
 
 }

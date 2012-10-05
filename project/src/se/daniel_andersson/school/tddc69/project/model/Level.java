@@ -1,14 +1,12 @@
 package se.daniel_andersson.school.tddc69.project.model;
 
 
-import se.daniel_andersson.school.tddc69.project.model.objects.FastBuff;
-import se.daniel_andersson.school.tddc69.project.model.objects.LevelPortal;
-import se.daniel_andersson.school.tddc69.project.model.objects.Oil;
-import se.daniel_andersson.school.tddc69.project.model.objects.Stone;
+import se.daniel_andersson.school.tddc69.project.model.objects.*;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -25,15 +23,15 @@ public class Level {
         return innerTile;
     }
 
-    private int screenHeight = 20;
+    private final int screenHeight = 20;
 
     private int innerTile = 0;
 
     private int levelWidth;
     private int levelHeight;
 
-    private int tileWidth = 20;
-    private int tileHeight = 30;
+    private final int tileWidth = 20;
+    private final int tileHeight = 30;
 
 
     private int startX;
@@ -105,10 +103,7 @@ public class Level {
 
 
     public boolean reachedEnd() {
-        if (topIndex > 0)
-            return false;
-        else
-            return true;
+        return topIndex <= 0;
     }
 
     public void updateLevelIndex(){
@@ -144,11 +139,11 @@ public class Level {
         return map;
     }
 
-    private void parseMeta() throws IOException {
+    private void parseMeta() throws IOException, FileNotFoundException {
         File file = new File("level/"+ID+".meta");
         System.out.println(file.getAbsolutePath());
         if (!file.exists()) {
-            throw new IOException();
+            throw new IOException("Coundnt read "+ID+".meta");
         }
         configFile.load(new FileInputStream(file));
         System.out.println("Loaded meta info from file: "+file.getAbsolutePath());
@@ -160,7 +155,7 @@ public class Level {
         startY = Integer.parseInt(configFile.getProperty("STARTY"));
 
     }
-    private void parseMap() throws IOException{
+    private void parseMap() throws FileNotFoundException {
         Scanner scan = new Scanner(new File("level/"+ID+".map"));
         for (int i = 0; i < levelHeight; i++) {
             for (int j = 0; j < levelWidth; j++) {
@@ -173,6 +168,8 @@ public class Level {
                     map[i][j] = new LevelPortal();
                 else if (text.equals("S"))
                     map[i][j] = new FastBuff();
+                else if (text.equals("G"))
+                    map[i][j] = new GhostBuff();
             }
         }
         scan.close();

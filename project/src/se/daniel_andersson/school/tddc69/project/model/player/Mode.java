@@ -6,6 +6,7 @@ public interface Mode {
     public void moveLeft(Player p);
     public void moveUp(Player p);
     public void moveDown(Player p);
-
+    public boolean collisionAble();
+    public int getSpeed();
     public int getTime();
 }

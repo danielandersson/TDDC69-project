@@ -6,7 +6,7 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 public class Game {
 
-    private Player player;
+    private final Player player;
     private Level currentLevel;
 
     private int levelsCompleted;
@@ -17,10 +17,7 @@ public class Game {
     }
 
     public boolean gameOver() {
-        if(player.isAlive())
-            return false;
-        else
-            return true;
+        return !player.isAlive();
     }
 
     public int getLevelsCompleted() {
@@ -28,10 +25,7 @@ public class Game {
     }
 
     public boolean levelComplete(){
-        if(currentLevel.reachedEnd())
-            return true;
-        else
-            return false;
+        return currentLevel.reachedEnd();
     }
 
     public void gameTick() {
@@ -43,7 +37,8 @@ public class Game {
             player.setLevelAdvance(false);
         }
         else {
-            currentLevel.collision(player);
+            if (player.collisionAble())
+                currentLevel.collision(player);
             if (!levelComplete())
                 currentLevel.updateLevelIndex();
         }
@@ -56,5 +51,4 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
-
 }

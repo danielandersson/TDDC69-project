@@ -2,19 +2,18 @@ package se.daniel_andersson.school.tddc69.project;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class StateManager {
 
-    private ArrayList<State> states;
+    private final ArrayList<State> states;
 
     private int currentState;
 
-    private JFrame gameFrame;
+    private final JFrame stateFrame;
 
     public StateManager(JFrame j){
-        gameFrame = j;
+        stateFrame = j;
         states = new ArrayList<State>();
         initAllStates();
     }
@@ -26,12 +25,13 @@ public class StateManager {
     }
 
     public void startCurrentState(){
-        gameFrame.add(states.get(currentState));
+        stateFrame.add(states.get(currentState));
         states.get(currentState).start();
+        stateFrame.setVisible(true);
     }
 
     public void stopCurrentState(){
-        gameFrame.remove(states.get(currentState));
+        stateFrame.remove(states.get(currentState));
         states.get(currentState).stop();
     }
 

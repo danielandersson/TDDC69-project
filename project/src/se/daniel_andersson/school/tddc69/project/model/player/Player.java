@@ -1,14 +1,10 @@
 package se.daniel_andersson.school.tddc69.project.model.player;
 
 
-import se.daniel_andersson.school.tddc69.project.model.player.Modes.Fast;
-import se.daniel_andersson.school.tddc69.project.model.player.Modes.Ghost;
+import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,13 +26,8 @@ public class Player {
         this.XCoord = XCoord;
         this.YCoord = YCoord;
         life = 5;
-
-        try {
-            File file = new File(getClass().getResource("../../img/car.png").getFile());
-            texture = ImageIO.read(file);
-        } catch (IOException e) {
-            System.out.println("You failed.");
-        }
+        if (texture == null)
+            texture = ResourceHandler.getImage("car.png");
     }
 
     public BufferedImage getTexture() {
@@ -98,8 +89,12 @@ public class Player {
         currentMode.moveLeft(this);
     }
 
+    public boolean collisionAble() {
+        return currentMode.collisionAble();
+    }
+
     public int getSpeed() {
-        return speed;
+        return currentMode.getSpeed();
     }
     public int getLife() {
         return life;

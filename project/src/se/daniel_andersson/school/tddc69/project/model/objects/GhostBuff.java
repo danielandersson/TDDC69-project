@@ -1,33 +1,33 @@
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
 
-import se.daniel_andersson.school.tddc69.project.model.Liquid;
+import se.daniel_andersson.school.tddc69.project.model.PowerUp;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
-import se.daniel_andersson.school.tddc69.project.model.player.Modes.MovementDisable;
+import se.daniel_andersson.school.tddc69.project.model.player.Modes.Ghost;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
-
-public class Oil extends Liquid {
-
+public class GhostBuff extends PowerUp {
     private static BufferedImage texture = null;
 
-    public Oil(){
+    public GhostBuff(){
         if (texture == null)
-            texture = ResourceHandler.getImage("oil.png");
-    }
-
-    public BufferedImage getTexture() {
-        return texture;
+            texture = ResourceHandler.getImage("speed.png");
     }
 
     @Override
     public void collision(Player p) {
-        p.setCurrentMode(new MovementDisable());
+        p.setCurrentMode(new Ghost());
     }
 
     @Override
     public void destroy() {
+    }
+
+
+    @Override
+    public BufferedImage getTexture() {
+        return texture;
     }
 }

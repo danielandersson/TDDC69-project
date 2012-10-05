@@ -3,10 +3,9 @@ package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-public abstract class Liquid extends GameObject {
+public abstract class Liquid implements GameObject {
 
-    public Liquid() {
-
+    protected Liquid() {
     }
 
     public void collision(Player p) {

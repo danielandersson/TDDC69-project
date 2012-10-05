@@ -1,7 +1,6 @@
 package se.daniel_andersson.school.tddc69.project.controller;
 
 
-import se.daniel_andersson.school.tddc69.project.controller.Game;
 import se.daniel_andersson.school.tddc69.project.view.GraphicalViewer;
 
 import javax.swing.*;
@@ -10,12 +9,12 @@ import java.awt.event.ActionEvent;
 
 public class GameFrame extends JFrame {
 
-    private JComponent graphicalViewer;
-    private Game mainGame;
+    private final JComponent graphicalViewer;
+    private final Game mainGame;
 
     public GameFrame(final Game mainGame) {
         super("Projectname");
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         super.setLayout(new BorderLayout());
         this.mainGame = mainGame;
         graphicalViewer = new GraphicalViewer(mainGame);
@@ -24,21 +23,21 @@ public class GameFrame extends JFrame {
         final Action moveUp = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (mainGame.getPlayer().getYCoord() < mainGame.getLevel().getScreenHeight()*mainGame.getLevel().getTileHeight())
+                if (mainGame.getPlayer().getYCoord()+mainGame.getPlayer().getSpeed() < mainGame.getLevel().getScreenHeight()*mainGame.getLevel().getTileHeight())
                     mainGame.getPlayer().moveUp();
             }
         };
         final Action moveLeft = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (mainGame.getPlayer().getYCoord() > 0)
+                if (mainGame.getPlayer().getXCoord() > 0)
                     mainGame.getPlayer().moveLeft();
             }
         };
         final Action moveRight = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (mainGame.getPlayer().getYCoord() < mainGame.getLevel().getLevelWidth()*mainGame.getLevel().getTileWidth())
+                if (mainGame.getPlayer().getXCoord() < mainGame.getLevel().getLevelWidth()*mainGame.getLevel().getTileWidth()-mainGame.getLevel().getTileWidth())
                     mainGame.getPlayer().moveRight();
             }
         };
