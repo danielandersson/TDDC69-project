@@ -16,16 +16,14 @@ public class Player {
     private int YCoord;
     private Mode currentMode = new Normal();
     private boolean levelAdvance = false;
-    private int speed = 5;
     private BufferedImage texture = null;
-    private int life;
+    private int life = 1;
 
 
 
     public Player(int XCoord, int YCoord) {
         this.XCoord = XCoord;
         this.YCoord = YCoord;
-        life = 5;
         if (texture == null)
             texture = ResourceHandler.getImage("car.png");
     }

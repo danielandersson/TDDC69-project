@@ -1,24 +1,32 @@
 package se.daniel_andersson.school.tddc69.project;
 
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 
-public class State extends Canvas implements Runnable {
+public class State extends JComponent implements Runnable {
 
     private volatile boolean running = false;
 
     private long ticks = 0;
-
-    public BufferedImage screen = new BufferedImage(TestStateGame.GAME_WIDTH, TestStateGame.GAME_HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private final Graphics2D g = screen.createGraphics();
+    public BufferedImage screen;
+    private Graphics2D g;
 
     public String name;
 
+    private StateChangeListener listener = null;
+
     public State(String s){
         name = s;
+    }
+
+    public StateChangeListener getListener() {
+        return listener;
+    }
+    public void setListener(StateChangeListener listener) {
+        this.listener = listener;
     }
 
     public void start(){
@@ -35,6 +43,7 @@ public class State extends Canvas implements Runnable {
     }
 
     public Graphics2D getGraphics2D(){
+        g = screen.createGraphics();
         return g;
     }
 
@@ -47,38 +56,15 @@ public class State extends Canvas implements Runnable {
     }
 
     public void render(){
-/*
-        BufferStrategy b = getBufferStrategy();
-        if(b == null){
-            createBufferStrategy(3);
-            return;
-        }
-        Graphics g = b.getDrawGraphics();
-        g.drawImage(screen, 0, 0, TestStateGame.GAME_WIDTH, TestStateGame.GAME_HEIGHT, this);
-        g.dispose();
-        b.show();*/
-        BufferStrategy bf = this.getBufferStrategy();
-        if(bf == null){
-            createBufferStrategy(1);
-            return;
-        }
         Graphics g = null;
-
         try {
-            g = bf.getDrawGraphics();
-
-
-            // It is assumed that mySprite is created somewhere else.
-            // This is just an example for passing off the Graphics object.
-            g.drawImage(screen, 0, 0, TestStateGame.GAME_WIDTH, TestStateGame.GAME_HEIGHT, this);
-
-        } finally {
-            // It is best to dispose() a Graphics object when done with it.
-            g.dispose();
+            g = getGraphics();
+            g.setColor(Color.GRAY);
+            g.drawImage(screen, 0, 0, screen.getWidth(), screen.getHeight(), this);
+        } catch (NullPointerException e) {
+            System.out.println("NEJ!");
         }
 
-        // Shows the contents of the backbuffer on the screen.
-        bf.show();
     }
 
     public void update(){
@@ -88,12 +74,11 @@ public class State extends Canvas implements Runnable {
     @Override
     public void run() {
         while(running){
-
             update();
             render();
-
         }
     }
-
+    public void updateInputMap() {
+    }
 }
 

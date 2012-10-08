@@ -8,9 +8,8 @@ public class StateFrame extends JFrame {
     public StateFrame() {
         super("Project");
         //super.setUndecorated(true);
-        super.setSize(TestStateGame.GAME_WIDTH, TestStateGame.GAME_HEIGHT);
-        super.setResizable(false);
+        //super.setResizable(false);
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        super.setLocationRelativeTo(null);
+       // super.setLocationRelativeTo(null);
     }
 }

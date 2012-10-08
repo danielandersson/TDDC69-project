@@ -4,13 +4,14 @@ package se.daniel_andersson.school.tddc69.project;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class StateManager {
+public class StateManager implements StateChangeListener{
 
     private final ArrayList<State> states;
-
     private int currentState;
-
     private final JFrame stateFrame;
+
+    private StateChangeListener listener = null;
+    private State previousState = null;
 
     public StateManager(JFrame j){
         stateFrame = j;
@@ -27,7 +28,10 @@ public class StateManager {
     public void startCurrentState(){
         stateFrame.add(states.get(currentState));
         states.get(currentState).start();
+        states.get(currentState).setListener(this);
+        stateFrame.pack();
         stateFrame.setVisible(true);
+        states.get(currentState).requestFocus();
     }
 
     public void stopCurrentState(){
@@ -43,4 +47,12 @@ public class StateManager {
         }
     }
 
+    @Override
+    public void stateChanged(String nextState) {
+        System.out.println("Byte State");
+        stopCurrentState();
+        setCurrentState(nextState);
+        states.get(currentState).updateInputMap();
+        startCurrentState();
+    }
 }

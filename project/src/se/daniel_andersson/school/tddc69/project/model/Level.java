@@ -33,20 +33,11 @@ public class Level {
     private final int tileWidth = 20;
     private final int tileHeight = 30;
 
-
     private int startX;
-
-    public int getStartX() {
-        return startX;
-    }
-
-    public int getStartY() {
-        return startY;
-    }
-
     private int startY;
-
     private int topIndex, bottomIndex;
+
+    private String bgColor;
 
     private GameObject[][] map;
 
@@ -67,6 +58,17 @@ public class Level {
             System.out.println("Couldnt found the level!");
             System.exit(0);
         }
+    }
+
+    public String getBgColor() {
+        return bgColor;
+    }
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
     }
 
     public int getTileWidth() {
@@ -141,7 +143,6 @@ public class Level {
 
     private void parseMeta() throws IOException, FileNotFoundException {
         File file = new File("level/"+ID+".meta");
-        System.out.println(file.getAbsolutePath());
         if (!file.exists()) {
             throw new IOException("Coundnt read "+ID+".meta");
         }
@@ -153,6 +154,7 @@ public class Level {
 
         startX = Integer.parseInt(configFile.getProperty("STARTX"));
         startY = Integer.parseInt(configFile.getProperty("STARTY"));
+        bgColor = configFile.getProperty("BG");
 
     }
     private void parseMap() throws FileNotFoundException {
