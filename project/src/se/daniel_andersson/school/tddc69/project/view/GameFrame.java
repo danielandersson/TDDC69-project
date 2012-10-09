@@ -1,7 +1,7 @@
-package se.daniel_andersson.school.tddc69.project.controller;
+package se.daniel_andersson.school.tddc69.project.view;
 
 
-import se.daniel_andersson.school.tddc69.project.view.GraphicalViewer;
+import se.daniel_andersson.school.tddc69.project.controller.Game;
 
 import javax.swing.*;
 import java.awt.*;

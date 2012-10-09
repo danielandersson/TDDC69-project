@@ -1,12 +1,22 @@
 package se.daniel_andersson.school.tddc69.project.model.player.Modes;
 
 
+import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Mode;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+import java.awt.image.BufferedImage;
 
 public class Normal implements Mode {
     private final int time = 0;
     private final int speed = 5;
+    private static BufferedImage texture = null;
+
+    public Normal() {
+        if (texture == null)
+            texture = ResourceHandler.getImage("car.png");
+    }
+
     @Override
     public void moveRight(Player p) {
         if (p.isAlive())
@@ -40,5 +50,10 @@ public class Normal implements Mode {
     @Override
     public int getTime() {
         return time;
+    }
+
+    @Override
+    public BufferedImage getTexture() {
+        return texture;
     }
 }

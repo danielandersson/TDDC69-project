@@ -13,7 +13,7 @@ public class GhostBuff extends PowerUp {
 
     public GhostBuff(){
         if (texture == null)
-            texture = ResourceHandler.getImage("speed.png");
+            texture = ResourceHandler.getImage("ghost.png");
     }
 
     @Override

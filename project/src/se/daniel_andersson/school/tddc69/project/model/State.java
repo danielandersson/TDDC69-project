@@ -1,8 +1,10 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.model;
 
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 
@@ -55,7 +57,7 @@ public class State extends JComponent implements Runnable {
         return ticks;
     }
 
-    public void render(){
+    /*public void render(){
         Graphics g = null;
         try {
             g = getGraphics();
@@ -63,9 +65,10 @@ public class State extends JComponent implements Runnable {
             g.drawImage(screen, 0, 0, screen.getWidth(), screen.getHeight(), this);
         } catch (NullPointerException e) {
             System.out.println("NEJ!");
+            //e.printStackTrace();
         }
-
-    }
+        //repaint();
+    }*/
 
     public void update(){
         ticks++;
@@ -73,11 +76,18 @@ public class State extends JComponent implements Runnable {
 
     @Override
     public void run() {
+        Timer renderTimer = new Timer(10, renderTask);
+        renderTimer.start();
         while(running){
             update();
-            render();
         }
     }
+    ActionListener renderTask = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+            repaint();
+        }
+    };
+
     public void updateInputMap() {
     }
 }

@@ -1,7 +1,6 @@
 package se.daniel_andersson.school.tddc69.project.model.player;
 
 
-import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
 
 import java.awt.image.BufferedImage;
@@ -16,20 +15,17 @@ public class Player {
     private int YCoord;
     private Mode currentMode = new Normal();
     private boolean levelAdvance = false;
-    private BufferedImage texture = null;
-    private int life = 1;
+    private int life = 5;
 
 
 
     public Player(int XCoord, int YCoord) {
         this.XCoord = XCoord;
         this.YCoord = YCoord;
-        if (texture == null)
-            texture = ResourceHandler.getImage("car.png");
     }
 
     public BufferedImage getTexture() {
-        return texture;
+        return currentMode.getTexture();
     }
 
     public boolean isAlive() {

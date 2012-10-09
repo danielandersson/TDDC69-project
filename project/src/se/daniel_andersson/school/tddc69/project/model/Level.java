@@ -14,34 +14,21 @@ import java.util.Scanner;
 public class Level {
 
     private int ID;
-
-    public int getScreenHeight() {
-        return screenHeight;
-    }
-
-    public int getInnerTile() {
-        return innerTile;
-    }
-
     private final int screenHeight = 20;
-
     private int innerTile = 0;
-
     private int levelWidth;
     private int levelHeight;
-
     private final int tileWidth = 20;
     private final int tileHeight = 30;
-
     private int startX;
     private int startY;
     private int topIndex, bottomIndex;
 
+    private int nextLevel;
     private String bgColor;
-
     private GameObject[][] map;
-
     Properties configFile = new Properties();
+
 
     public Level(int ID){
         this.ID = ID;
@@ -58,6 +45,22 @@ public class Level {
             System.out.println("Couldnt found the level!");
             System.exit(0);
         }
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getNextLevel() {
+        return nextLevel;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public int getInnerTile() {
+        return innerTile;
     }
 
     public String getBgColor() {
@@ -155,8 +158,13 @@ public class Level {
         startX = Integer.parseInt(configFile.getProperty("STARTX"));
         startY = Integer.parseInt(configFile.getProperty("STARTY"));
         bgColor = configFile.getProperty("BG");
+        if (configFile.getProperty("NEXT").equals("END"))
+            nextLevel = 0;
+        else
+            nextLevel = Integer.parseInt(configFile.getProperty("NEXT"));
 
     }
+    //TODO: Fix the IF statement
     private void parseMap() throws FileNotFoundException {
         Scanner scan = new Scanner(new File("level/"+ID+".map"));
         for (int i = 0; i < levelHeight; i++) {
@@ -172,6 +180,8 @@ public class Level {
                     map[i][j] = new FastBuff();
                 else if (text.equals("G"))
                     map[i][j] = new GhostBuff();
+                else if (text.equals("T"))
+                    map[i][j] = new Tree();
             }
         }
         scan.close();

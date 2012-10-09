@@ -2,15 +2,18 @@ package se.daniel_andersson.school.tddc69.project.view;
 
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
+import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GraphicalStateViewer extends JComponent {
 
     public static int WIDTH;
     public static int HEIGHT;
     private final Game mainGame;
+    private static final BufferedImage heartTexture = ResourceHandler.getImage("heart.png");
 
     public GraphicalStateViewer(Game game) {
         this.mainGame = game;
@@ -22,14 +25,10 @@ public class GraphicalStateViewer extends JComponent {
     @Override
     public void paintComponent(final Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        if (mainGame.getPlayer().isAlive()) {
-            paintMap(g2);
-            paintPlayer(g2);
-            paintInfo(g2);
-        }
-        else
-            paintDead(g2);
-        paintDebug(g2);
+        paintMap(g2);
+        paintPlayer(g2);
+        paintInfo(g2);
+        //paintDebug(g2);
     }
 
     @Override
@@ -76,14 +75,7 @@ public class GraphicalStateViewer extends JComponent {
     private void paintInfo(final Graphics2D g2) {
         g2.setColor(Color.RED);
         for (int i = mainGame.getPlayer().getLife(); i > 0; i--) {
-            g2.drawString("<3", 10+(i*15), mainGame.getLevel().getScreenHeight()*(mainGame.getLevel().getTileHeight()-1));
+            g2.drawImage(heartTexture, 10+(i*25), mainGame.getLevel().getScreenHeight()*(mainGame.getLevel().getTileHeight()-2), null);
         }
     }
-    private void paintDead(final Graphics2D g2) {
-        g2.setColor(Color.BLACK);
-        g2.fill(super.getBounds());
-        g2.setColor(Color.RED);
-        g2.drawString("YOU ARE DEAD!", (mainGame.getLevel().getTileWidth()/2)*mainGame.getLevel().getTileWidth(), (mainGame.getLevel().getScreenHeight()/2)*mainGame.getLevel().getTileHeight());
-    }
-
 }

@@ -1,6 +1,7 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.controller.states;
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
+import se.daniel_andersson.school.tddc69.project.model.State;
 import se.daniel_andersson.school.tddc69.project.view.GraphicalStateViewer;
 
 import javax.swing.*;
@@ -23,23 +24,43 @@ public class GameState extends State {
         updateInputMap();
     }
 
-    @Override
+    /*@Override
     public void render() {
         Graphics2D g2 = getGraphics2D();
-        //System.out.println(mainGame.getLevel().getBgColor());
-        //System.out.println(Integer.parseInt(mainGame.getLevel().getBgColor(), 16));
         g2.setColor(new Color(Integer.parseInt(mainGame.getLevel().getBgColor(), 16)));
         g2.setColor(Color.BLACK);
         g2.fill(this.getBounds());
         graphicalStateViewer.paintComponent(g2);
         super.render();
+    }*/
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(new Color(Integer.parseInt(mainGame.getLevel().getBgColor(), 16)));
+        g2.fill(this.getBounds());
+        graphicalStateViewer.paintComponent(g2);
     }
 
     public void update(){
-        if (prevTimer+90 < System.currentTimeMillis()) {
-            super.update();
-            mainGame.gameTick();
-            prevTimer = System.currentTimeMillis();
+        if (mainGame.isGameCompleted()) {
+            mainGame = new Game();
+            graphicalStateViewer = new GraphicalStateViewer(mainGame);
+            getListener().stateChanged("MenuState");
+            System.out.println("Du klarade spelet!!");
+        }
+        else if (mainGame.gameOver()) {
+            mainGame = new Game();
+            graphicalStateViewer = new GraphicalStateViewer(mainGame);
+            getListener().stateChanged("MenuState");
+            System.out.println("Du doooog!!!!");
+        }
+        else {
+            if (prevTimer+90 < System.currentTimeMillis()) {
+                super.update();
+                mainGame.gameTick();
+                prevTimer = System.currentTimeMillis();
+            }
         }
     }
     public Dimension getPreferredSize() {

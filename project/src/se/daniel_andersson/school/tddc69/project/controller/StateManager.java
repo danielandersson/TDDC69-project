@@ -1,10 +1,16 @@
-package se.daniel_andersson.school.tddc69.project;
+package se.daniel_andersson.school.tddc69.project.controller;
 
+
+import se.daniel_andersson.school.tddc69.project.controller.states.GameState;
+import se.daniel_andersson.school.tddc69.project.controller.states.HelpState;
+import se.daniel_andersson.school.tddc69.project.controller.states.MenuState;
+import se.daniel_andersson.school.tddc69.project.model.State;
+import se.daniel_andersson.school.tddc69.project.model.StateChangeListener;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class StateManager implements StateChangeListener{
+public class StateManager implements StateChangeListener {
 
     private final ArrayList<State> states;
     private int currentState;
@@ -22,6 +28,7 @@ public class StateManager implements StateChangeListener{
     private void initAllStates(){
         //TODO Add states
         states.add(new MenuState());
+        states.add(new HelpState());
         states.add(new GameState());
     }
 
@@ -30,6 +37,7 @@ public class StateManager implements StateChangeListener{
         states.get(currentState).start();
         states.get(currentState).setListener(this);
         stateFrame.pack();
+        stateFrame.setLocationRelativeTo(null);
         stateFrame.setVisible(true);
         states.get(currentState).requestFocus();
     }

@@ -2,7 +2,7 @@ package se.daniel_andersson.school.tddc69.project;
 
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
-import se.daniel_andersson.school.tddc69.project.controller.GameFrame;
+import se.daniel_andersson.school.tddc69.project.view.GameFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
