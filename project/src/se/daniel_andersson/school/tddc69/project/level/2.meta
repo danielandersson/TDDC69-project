@@ -1,0 +1,7 @@
+#Map size
+WIDTH=22
+HEIGHT=88
+STARTX=11
+STARTY=3
+BG=ffffff
+NEXT=3
