@@ -145,12 +145,7 @@ public class Level {
     }
 
     private void parseMeta() throws IOException, FileNotFoundException {
-        File file = new File("level/"+ID+".meta");
-        if (!file.exists()) {
-            throw new IOException("Coundnt read "+ID+".meta");
-        }
-        configFile.load(new FileInputStream(file));
-        System.out.println("Loaded meta info from file: "+file.getAbsolutePath());
+        configFile.load(new FileInputStream(ResourceHandler.getLevelFile(ID+".meta")));
 
         levelWidth = Integer.parseInt(configFile.getProperty("WIDTH"));
         levelHeight = Integer.parseInt(configFile.getProperty("HEIGHT"));
@@ -166,7 +161,7 @@ public class Level {
     }
     //TODO: Fix the IF statement
     private void parseMap() throws FileNotFoundException {
-        Scanner scan = new Scanner(new File("level/"+ID+".map"));
+        Scanner scan = new Scanner(ResourceHandler.getLevelFile(ID+".map"));
         for (int i = 0; i < levelHeight; i++) {
             for (int j = 0; j < levelWidth; j++) {
                 String text = scan.next();
