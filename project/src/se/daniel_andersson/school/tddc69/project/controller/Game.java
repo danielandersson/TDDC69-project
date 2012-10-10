@@ -1,70 +1,123 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.controller;
-
 
 import se.daniel_andersson.school.tddc69.project.model.Level;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Game.
+ */
 public class Game {
 
-    private final Player player;
-    private Level currentLevel;
-    private boolean gameCompleted;
+	/** The player. */
+	private final Player player;
+	
+	/** The current level. */
+	private Level currentLevel;
+	
+	/** The game completed. */
+	private boolean gameCompleted;
 
-    private int levelsCompleted;
+	/** The levels completed. */
+	private int levelsCompleted;
 
-    public Game() {
-        currentLevel = new Level(1);
-        player = new Player(currentLevel.getTileWidth()*currentLevel.getStartX(), currentLevel.getTileHeight()*currentLevel.getStartY());
-    }
+	/**
+	 * Instantiates a new game.
+	 */
+	public Game() {
+		currentLevel = new Level(1);
+		player = new Player(currentLevel.getTileWidth()
+				* currentLevel.getStartX(), currentLevel.getTileHeight()
+				* currentLevel.getStartY());
+	}
 
-    public boolean isGameCompleted() {
-        return gameCompleted;
-    }
+	/**
+	 * Game over.
+	 *
+	 * @return true, if successful
+	 */
+	public boolean gameOver() {
+		return !player.isAlive();
+	}
 
-    public boolean gameOver() {
-        return !player.isAlive();
-    }
+	/**
+	 * Game tick.
+	 */
+	public void gameTick() {
+		if (player.isLevelAdvance()) {
+			levelsCompleted++;
+			if (currentLevel.getNextLevel() == 0)
+				gameCompleted = true;
+			else {
+				currentLevel = new Level(currentLevel.getNextLevel());
+				player.setXCoord(currentLevel.getTileWidth()
+						* currentLevel.getStartX());
+				player.setYCoord(currentLevel.getTileHeight()
+						* currentLevel.getStartY());
+				player.setLevelAdvance(false);
+			}
+		} else {
+			if (player.collisionAble()) {
+				int prevLife = player.getLife();
+				currentLevel.collision(player);
+				if (player.getLife() != prevLife) {
+					currentLevel = new Level(currentLevel.getID());
+					player.setXCoord(currentLevel.getTileWidth()
+							* currentLevel.getStartX());
+					player.setYCoord(currentLevel.getTileHeight()
+							* currentLevel.getStartY());
+				}
+			}
+			if (!levelComplete())
+				currentLevel.updateLevelIndex();
+		}
+	}
 
-    public int getLevelsCompleted() {
-        return levelsCompleted;
-    }
+	/**
+	 * Gets the level.
+	 *
+	 * @return the level
+	 */
+	public Level getLevel() {
+		return currentLevel;
+	}
 
-    public boolean levelComplete(){
-        return currentLevel.reachedEnd();
-    }
+	/**
+	 * Gets the levels completed.
+	 *
+	 * @return the levels completed
+	 */
+	public int getLevelsCompleted() {
+		return levelsCompleted;
+	}
 
-    public void gameTick() {
-        if (player.isLevelAdvance()) {
-            levelsCompleted++;
-            if (currentLevel.getNextLevel() == 0)
-                gameCompleted = true;
-            else {
-                currentLevel = new Level(currentLevel.getNextLevel());
-                player.setXCoord(currentLevel.getTileWidth()*currentLevel.getStartX());
-                player.setYCoord(currentLevel.getTileHeight()*currentLevel.getStartY());
-                player.setLevelAdvance(false);
-            }
-        }
-        else {
-            if (player.collisionAble()) {
-                int prevLife = player.getLife();
-                currentLevel.collision(player);
-                if (player.getLife() != prevLife) {
-                    currentLevel = new Level(currentLevel.getID());
-                    player.setXCoord(currentLevel.getTileWidth()*currentLevel.getStartX());
-                    player.setYCoord(currentLevel.getTileHeight()*currentLevel.getStartY());
-                }
-            }
-            if (!levelComplete())
-                currentLevel.updateLevelIndex();
-        }
-    }
+	/**
+	 * Gets the player.
+	 *
+	 * @return the player
+	 */
+	public Player getPlayer() {
+		return player;
+	}
 
-    public Level getLevel() {
-        return currentLevel;
-    }
+	/**
+	 * Checks if is game completed.
+	 *
+	 * @return true, if is game completed
+	 */
+	public boolean isGameCompleted() {
+		return gameCompleted;
+	}
 
-    public Player getPlayer() {
-        return player;
-    }
+	/**
+	 * Level complete.
+	 *
+	 * @return true, if successful
+	 */
+	public boolean levelComplete() {
+		return currentLevel.reachedEnd();
+	}
 }

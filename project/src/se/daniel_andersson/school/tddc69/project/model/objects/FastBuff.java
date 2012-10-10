@@ -1,35 +1,53 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.model.objects;
-
-
-import se.daniel_andersson.school.tddc69.project.model.PowerUp;
-import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
-import se.daniel_andersson.school.tddc69.project.model.player.Modes.Fast;
-import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
+import se.daniel_andersson.school.tddc69.project.model.PowerUp;
+import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
+import se.daniel_andersson.school.tddc69.project.model.player.Modes.Fast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FastBuff.
+ */
 public class FastBuff extends PowerUp {
-    private static BufferedImage texture = null;
+	
+	/** The texture. */
+	private static BufferedImage texture = null;
 
-    public FastBuff(){
-        if (texture == null)
-            texture = ResourceHandler.getImage("speed.png");
-    }
+	/**
+	 * Instantiates a new fast buff.
+	 */
+	public FastBuff() {
+		if (texture == null)
+			texture = ResourceHandler.getImage("speed.png");
+	}
 
-    @Override
-    public void collision(Player p) {
-        p.setCurrentMode(new Fast());
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.PowerUp#collision(se.daniel_andersson.school.tddc69.project.model.player.Player)
+	 */
+	@Override
+	public void collision(Player p) {
+		p.setCurrentMode(new Fast());
+	}
 
-    @Override
-    public void destroy() {
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#destroy()
+	 */
+	@Override
+	public void destroy() {
+	}
 
-
-    @Override
-    public BufferedImage getTexture() {
-        return texture;
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#getTexture()
+	 */
+	@Override
+	public BufferedImage getTexture() {
+		return texture;
+	}
 
 }

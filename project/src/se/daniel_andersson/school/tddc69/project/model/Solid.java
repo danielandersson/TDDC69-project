@@ -1,15 +1,28 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.model;
-
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Solid.
+ */
 public abstract class Solid implements GameObject {
 
-    protected Solid() {
-    }
+	/**
+	 * Instantiates a new solid.
+	 */
+	protected Solid() {
+	}
 
-    public void collision(Player p) {
-        p.takeDamage();
-        System.out.println("Åker igenom solid");
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#collision(se.daniel_andersson.school.tddc69.project.model.player.Player)
+	 */
+	@Override
+	public void collision(Player p) {
+		p.takeDamage();
+		System.out.println("Åker igenom solid");
+	}
 }

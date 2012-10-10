@@ -1,94 +1,152 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.model;
 
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JComponent;
+import javax.swing.Timer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class State.
+ */
+@SuppressWarnings("serial")
 public class State extends JComponent implements Runnable {
 
-    private volatile boolean running = false;
+	/** The running. */
+	private volatile boolean running = false;
 
-    private long ticks = 0;
-    public BufferedImage screen;
-    private Graphics2D g;
+	/** The ticks. */
+	private long ticks = 0;
+	
+	/** The screen. */
+	public BufferedImage screen;
+	
+	/** The g. */
+	private Graphics2D g;
 
-    public String name;
+	/** The name. */
+	public String name;
 
-    private StateChangeListener listener = null;
+	/** The listener. */
+	private StateChangeListener listener = null;
 
-    public State(String s){
-        name = s;
-    }
+	/** The render task. */
+	ActionListener renderTask = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			repaint();
+		}
+	};
 
-    public StateChangeListener getListener() {
-        return listener;
-    }
-    public void setListener(StateChangeListener listener) {
-        this.listener = listener;
-    }
+	/**
+	 * Instantiates a new state.
+	 *
+	 * @param s the s
+	 */
+	public State(String s) {
+		name = s;
+	}
 
-    public void start(){
-        if(!running){
-            running = true;
-            new Thread(this).start();
-        }
-    }
+	/**
+	 * Gets the graphics2 d.
+	 *
+	 * @return the graphics2 d
+	 */
+	public Graphics2D getGraphics2D() {
+		g = screen.createGraphics();
+		return g;
+	}
 
-    public void stop(){
-        if(running){
-            running = !running;
-        }
-    }
+	/**
+	 * Gets the listener.
+	 *
+	 * @return the listener
+	 */
+	public StateChangeListener getListener() {
+		return listener;
+	}
 
-    public Graphics2D getGraphics2D(){
-        g = screen.createGraphics();
-        return g;
-    }
+	/**
+	 * Gets the ticks.
+	 *
+	 * @return the ticks
+	 */
+	public long getTicks() {
+		return ticks;
+	}
 
-    public boolean isRunning() {
-        return running;
-    }
+	/**
+	 * Checks if is running.
+	 *
+	 * @return true, if is running
+	 */
+	public boolean isRunning() {
+		return running;
+	}
 
-    public long getTicks() {
-        return ticks;
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		Timer renderTimer = new Timer(10, renderTask);
+		renderTimer.start();
+		while (running) {
+			update();
+		}
+	}
 
-    /*public void render(){
-        Graphics g = null;
-        try {
-            g = getGraphics();
-            g.setColor(Color.GRAY);
-            g.drawImage(screen, 0, 0, screen.getWidth(), screen.getHeight(), this);
-        } catch (NullPointerException e) {
-            System.out.println("NEJ!");
-            //e.printStackTrace();
-        }
-        //repaint();
-    }*/
+	/**
+	 * Sets the listener.
+	 *
+	 * @param listener the new listener
+	 */
+	public void setListener(StateChangeListener listener) {
+		this.listener = listener;
+	}
 
-    public void update(){
-        ticks++;
-    }
+	/*
+	 * public void render(){ Graphics g = null; try { g = getGraphics();
+	 * g.setColor(Color.GRAY); g.drawImage(screen, 0, 0, screen.getWidth(),
+	 * screen.getHeight(), this); } catch (NullPointerException e) {
+	 * System.out.println("NEJ!"); //e.printStackTrace(); } //repaint(); }
+	 */
 
-    @Override
-    public void run() {
-        Timer renderTimer = new Timer(10, renderTask);
-        renderTimer.start();
-        while(running){
-            update();
-        }
-    }
-    ActionListener renderTask = new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-            repaint();
-        }
-    };
+	/**
+	 * Start.
+	 */
+	public void start() {
+		if (!running) {
+			running = true;
+			new Thread(this).start();
+		}
+	}
 
-    public void updateInputMap() {
-    }
+	/**
+	 * Stop.
+	 */
+	public void stop() {
+		if (running) {
+			running = !running;
+		}
+	}
+
+	/**
+	 * Update.
+	 */
+	public void update() {
+		ticks++;
+	}
+
+	/**
+	 * Update input map.
+	 */
+	public void updateInputMap() {
+	}
 }
-

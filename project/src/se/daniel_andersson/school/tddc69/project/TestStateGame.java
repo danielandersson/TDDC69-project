@@ -1,23 +1,38 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project;
 
+import javax.swing.JFrame;
 
 import se.daniel_andersson.school.tddc69.project.controller.StateManager;
 import se.daniel_andersson.school.tddc69.project.view.StateFrame;
 
-import javax.swing.*;
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestStateGame.
+ */
+@SuppressWarnings("serial")
 public class TestStateGame extends JFrame {
 
-    public StateManager sm;
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	public static void main(String[] args) {
+		new TestStateGame();
+	}
 
-
-    public TestStateGame() {
-        sm = new StateManager(new StateFrame());
-        sm.setCurrentState("MenuState");
-        sm.startCurrentState();
-    }
-
-    public static void main(String[] args) {
-        TestStateGame main = new TestStateGame();
-    }
+	/** The sm. */
+	public StateManager sm;
+	
+	/**
+	 * Instantiates a new test state game.
+	 */
+	public TestStateGame() {
+		sm = new StateManager(new StateFrame());
+		sm.setCurrentState("MenuState");
+		sm.startCurrentState();
+	}
 }

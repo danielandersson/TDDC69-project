@@ -1,24 +1,42 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
+import java.awt.image.BufferedImage;
 
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.Solid;
 
-import java.awt.image.BufferedImage;
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Stone.
+ */
 public class Stone extends Solid {
-    private static BufferedImage texture = null;
+	
+	/** The texture. */
+	private static BufferedImage texture = null;
 
-    public Stone(){
-        if (texture == null)
-            texture = ResourceHandler.getImage("stone.png");
-    }
+	/**
+	 * Instantiates a new stone.
+	 */
+	public Stone() {
+		if (texture == null)
+			texture = ResourceHandler.getImage("stone.png");
+	}
 
-    public BufferedImage getTexture() {
-        return texture;
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#destroy()
+	 */
+	@Override
+	public void destroy() {
+	}
 
-    @Override
-    public void destroy() {
-    }
+	/* (non-Javadoc)
+	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#getTexture()
+	 */
+	@Override
+	public BufferedImage getTexture() {
+		return texture;
+	}
 }

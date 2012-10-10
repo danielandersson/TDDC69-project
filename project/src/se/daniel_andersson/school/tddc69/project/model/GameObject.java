@@ -1,14 +1,35 @@
+/*
+ * 
+ */
 package se.daniel_andersson.school.tddc69.project.model;
-
-
-import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface GameObject.
+ */
 public abstract interface GameObject {
 
-    public abstract void collision(Player object);
-    public abstract void destroy();
-    public abstract BufferedImage getTexture();
+	/**
+	 * Collision.
+	 *
+	 * @param object the object
+	 */
+	public abstract void collision(Player object);
+
+	/**
+	 * Destroy.
+	 */
+	public abstract void destroy();
+
+	/**
+	 * Gets the texture.
+	 *
+	 * @return the texture
+	 */
+	public abstract BufferedImage getTexture();
 
 }
