@@ -90,7 +90,7 @@ public class StateManager implements StateChangeListener {
 	/**
 	 * Stop current state.
 	 */
-	public void stopCurrentState() {
+    void stopCurrentState() {
 		stateFrame.remove(states.get(currentState));
 		states.get(currentState).stop();
 	}

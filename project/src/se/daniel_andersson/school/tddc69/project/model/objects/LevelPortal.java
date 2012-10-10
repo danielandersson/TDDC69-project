@@ -34,16 +34,9 @@ public class LevelPortal implements GameObject {
 		p.setLevelAdvance(true);
 	}
 
-	/* (non-Javadoc)
-	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#destroy()
-	 */
-	@Override
-	public void destroy() {
-	}
-
-	/* (non-Javadoc)
-	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#getTexture()
-	 */
+    /* (non-Javadoc)
+      * @see se.daniel_andersson.school.tddc69.project.model.GameObject#getTexture()
+      */
 	@Override
 	public BufferedImage getTexture() {
 		return texture;

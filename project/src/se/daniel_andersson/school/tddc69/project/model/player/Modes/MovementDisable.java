@@ -19,10 +19,10 @@ public class MovementDisable implements Mode {
 	private static BufferedImage texture = null;
 
 	/** The time. */
-	private final int time = 5000;
+	private static final int time = 5000;
 
 	/** The speed. */
-	private final int speed = 0;
+	private static final int speed = 0;
 	
 	/**
 	 * Instantiates a new movement disable.

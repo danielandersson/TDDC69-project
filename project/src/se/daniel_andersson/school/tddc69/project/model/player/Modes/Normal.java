@@ -16,10 +16,10 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 public class Normal implements Mode {
 	
 	/** The time. */
-	private final int time = 0;
+	private static final int time = 0;
 	
 	/** The speed. */
-	private final int speed = 5;
+	private static final int speed = 5;
 	
 	/** The texture. */
 	private static BufferedImage texture = null;

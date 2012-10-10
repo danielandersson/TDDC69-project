@@ -20,10 +20,10 @@ import se.daniel_andersson.school.tddc69.project.controller.Game;
 public class GraphicalViewer extends JComponent {
 	
 	/** The width. */
-	public static int WIDTH;
+	private static int WIDTH;
 	
 	/** The height. */
-	public static int HEIGHT;
+	private static int HEIGHT;
 
 	/** The main game. */
 	private final Game mainGame;

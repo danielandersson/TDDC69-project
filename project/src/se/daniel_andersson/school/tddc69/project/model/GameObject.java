@@ -20,12 +20,7 @@ public abstract interface GameObject {
 	 */
 	public abstract void collision(Player object);
 
-	/**
-	 * Destroy.
-	 */
-	public abstract void destroy();
-
-	/**
+    /**
 	 * Gets the texture.
 	 *
 	 * @return the texture

@@ -24,10 +24,10 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 public class Level {
 
 	/** The id. */
-	private int ID;
+	private final int ID;
 	
 	/** The screen height. */
-	private final int screenHeight = 20;
+	private static final int screenHeight = 20;
 	
 	/** The inner tile. */
 	private int innerTile = 0;
@@ -39,10 +39,10 @@ public class Level {
 	private int levelHeight;
 	
 	/** The tile width. */
-	private final int tileWidth = 20;
+	private static final int tileWidth = 20;
 	
 	/** The tile height. */
-	private final int tileHeight = 30;
+	private static final int tileHeight = 30;
 	
 	/** The start x. */
 	private int startX;
@@ -63,7 +63,7 @@ public class Level {
 	private GameObject[][] map;
 	
 	/** The config file. */
-	Properties configFile = new Properties();
+    private final Properties configFile = new Properties();
 
 	/**
 	 * Instantiates a new level.
@@ -79,7 +79,11 @@ public class Level {
 			parseMap();
 			bottomIndex = levelHeight - 1;
 			topIndex = levelHeight - screenHeight;
-		} catch (IOException e) {
+		} catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Couldnt found the level!");
+            System.exit(0);
+        } catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Couldnt found the level!");
 			System.exit(0);
@@ -274,7 +278,7 @@ public class Level {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws FileNotFoundException the file not found exception
 	 */
-	private void parseMeta() throws IOException, FileNotFoundException {
+	private void parseMeta() throws IOException {
 		configFile.load(new FileInputStream(ResourceHandler.getLevelFile(ID
 				+ ".meta")));
 

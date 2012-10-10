@@ -16,10 +16,10 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 public class Fast implements Mode {
 	
 	/** The time. */
-	private final int time = 5000;
+	private static final int time = 5000;
 	
 	/** The speed. */
-	private final int speed = 10;
+	private static final int speed = 10;
 	
 	/** The texture. */
 	private static BufferedImage texture = null;

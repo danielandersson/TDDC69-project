@@ -26,13 +26,13 @@ import se.daniel_andersson.school.tddc69.project.view.GraphicalStateViewer;
 public class GameState extends State {
 
 	/** The main game. */
-	Game mainGame;
+    private Game mainGame;
 	
 	/** The graphical state viewer. */
-	GraphicalStateViewer graphicalStateViewer;
+    private GraphicalStateViewer graphicalStateViewer;
 	
 	/** The prev timer. */
-	long prevTimer;
+    private long prevTimer;
 
 	/**
 	 * Instantiates a new game state.

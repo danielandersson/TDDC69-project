@@ -24,14 +24,11 @@ public class TestStateGame extends JFrame {
 		new TestStateGame();
 	}
 
-	/** The sm. */
-	public StateManager sm;
-	
-	/**
+    /**
 	 * Instantiates a new test state game.
 	 */
 	public TestStateGame() {
-		sm = new StateManager(new StateFrame());
+        StateManager sm = new StateManager(new StateFrame());
 		sm.setCurrentState("MenuState");
 		sm.startCurrentState();
 	}

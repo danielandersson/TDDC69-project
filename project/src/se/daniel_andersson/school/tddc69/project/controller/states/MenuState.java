@@ -26,7 +26,8 @@ import se.daniel_andersson.school.tddc69.project.model.State;
 public class MenuState extends State {
 
 	/** The Constant SCREEN_HEIGHT. */
-	public static final int SCREEN_WIDTH = 1024, SCREEN_HEIGHT = 576;
+	private static final int SCREEN_WIDTH = 1024;
+    private static final int SCREEN_HEIGHT = 576;
 	
 	/** The current option. */
 	private int currentOption = 0;
@@ -35,10 +36,10 @@ public class MenuState extends State {
 	private static final int menuItems = 3;
 	
 	/** The bg. */
-	private BufferedImage bg = ResourceHandler.getImage("menubg.jpg");
+	private final BufferedImage bg = ResourceHandler.getImage("menubg.jpg");
 	
 	/** The logo. */
-	private BufferedImage logo = ResourceHandler.getImage("logo.png");
+	private final BufferedImage logo = ResourceHandler.getImage("logo.png");
 
 	/**
 	 * Instantiates a new menu state.
@@ -85,7 +86,7 @@ public class MenuState extends State {
 	private void paintMenu(Graphics2D g2) {
 		int intPosX = 800, intPosY = 300;
 		g2.setFont(new Font("Corial", Font.PLAIN, 24));
-		g2.setColor(new Color(00, 00, 00, 100));
+		g2.setColor(new Color(0, 0, 0, 100));
 		g2.fillRect(intPosX, intPosY, 160, 40);
 		g2.fillRect(intPosX, intPosY + 60, 160, 40);
 		g2.fillRect(intPosX, intPosY + 120, 160, 40);

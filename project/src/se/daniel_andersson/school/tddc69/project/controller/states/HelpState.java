@@ -24,10 +24,11 @@ import se.daniel_andersson.school.tddc69.project.model.State;
 public class HelpState extends State {
 
 	/** The Constant SCREEN_HEIGHT. */
-	public static final int SCREEN_WIDTH = 1024, SCREEN_HEIGHT = 576;
+	private static final int SCREEN_WIDTH = 1024;
+    private static final int SCREEN_HEIGHT = 576;
 	
 	/** The bg. */
-	private BufferedImage bg = ResourceHandler.getImage("helpbg.png");
+	private final BufferedImage bg = ResourceHandler.getImage("helpbg.png");
 
 	/**
 	 * Instantiates a new help state.

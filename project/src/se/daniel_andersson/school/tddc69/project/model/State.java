@@ -25,19 +25,19 @@ public class State extends JComponent implements Runnable {
 	private long ticks = 0;
 	
 	/** The screen. */
-	public BufferedImage screen;
+    protected BufferedImage screen;
 	
 	/** The g. */
 	private Graphics2D g;
 
 	/** The name. */
-	public String name;
+	public final String name;
 
 	/** The listener. */
 	private StateChangeListener listener = null;
 
 	/** The render task. */
-	ActionListener renderTask = new ActionListener() {
+    private final ActionListener renderTask = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			repaint();
@@ -49,7 +49,7 @@ public class State extends JComponent implements Runnable {
 	 *
 	 * @param s the s
 	 */
-	public State(String s) {
+    protected State(String s) {
 		name = s;
 	}
 
@@ -68,7 +68,7 @@ public class State extends JComponent implements Runnable {
 	 *
 	 * @return the listener
 	 */
-	public StateChangeListener getListener() {
+    protected StateChangeListener getListener() {
 		return listener;
 	}
 
@@ -140,7 +140,7 @@ public class State extends JComponent implements Runnable {
 	/**
 	 * Update.
 	 */
-	public void update() {
+    protected void update() {
 		ticks++;
 	}
 
