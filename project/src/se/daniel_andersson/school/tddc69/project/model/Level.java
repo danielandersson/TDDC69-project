@@ -3,19 +3,14 @@
  */
 package se.daniel_andersson.school.tddc69.project.model;
 
+import se.daniel_andersson.school.tddc69.project.model.objects.*;
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
-
-import se.daniel_andersson.school.tddc69.project.model.objects.FastBuff;
-import se.daniel_andersson.school.tddc69.project.model.objects.GhostBuff;
-import se.daniel_andersson.school.tddc69.project.model.objects.LevelPortal;
-import se.daniel_andersson.school.tddc69.project.model.objects.Oil;
-import se.daniel_andersson.school.tddc69.project.model.objects.Stone;
-import se.daniel_andersson.school.tddc69.project.model.objects.Tree;
-import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,10 +19,10 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 public class Level {
 
 	/** The id. */
-	private final int ID;
+	private final int levelID;
 	
 	/** The screen height. */
-	private static final int screenHeight = 20;
+	private static final int SCREEN_HEIGHT = 20;
 	
 	/** The inner tile. */
 	private int innerTile = 0;
@@ -39,10 +34,10 @@ public class Level {
 	private int levelHeight;
 	
 	/** The tile width. */
-	private static final int tileWidth = 20;
+	private static final int TILE_WIDTH = 20;
 	
 	/** The tile height. */
-	private static final int tileHeight = 30;
+	private static final int TILE_HEIGHT = 30;
 	
 	/** The start x. */
 	private int startX;
@@ -68,17 +63,17 @@ public class Level {
 	/**
 	 * Instantiates a new level.
 	 *
-	 * @param ID the id
+	 * @param levelID the id
 	 */
-	public Level(int ID) {
-		this.ID = ID;
+	public Level(int levelID) {
+		this.levelID = levelID;
 
 		try {
 			parseMeta();
 			map = new GameObject[levelHeight][levelWidth];
 			parseMap();
 			bottomIndex = levelHeight - 1;
-			topIndex = levelHeight - screenHeight;
+			topIndex = levelHeight - SCREEN_HEIGHT;
 		} catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Couldnt found the level!");
@@ -96,25 +91,25 @@ public class Level {
 	 * @param p the p
 	 */
 	public void collision(Player p) {
-		int XMath = p.getXCoord() / tileWidth;
-		int XMath2 = (p.getXCoord() + tileWidth - 1) / tileWidth;
-		int YMath = bottomIndex - (p.getYCoord()) / tileHeight;
-		int YMath2 = bottomIndex - (p.getYCoord() - tileHeight) / tileHeight;
+		int xMath = p.getxCoord() / TILE_WIDTH;
+		int xMath2 = (p.getxCoord() + TILE_WIDTH - 1) / TILE_WIDTH;
+		int yMath = bottomIndex - (p.getyCoord()) / TILE_HEIGHT;
+		int yMath2 = bottomIndex - (p.getyCoord() - TILE_HEIGHT) / TILE_HEIGHT;
 		// TopLeft
-		if (map[YMath][XMath] != null) {
-			map[YMath][XMath].collision(p);
+		if (map[yMath][xMath] != null) {
+			map[yMath][xMath].collision(p);
 		}
 		// TopRight
-		else if (map[YMath][XMath2] != null) {
-			map[YMath][XMath2].collision(p);
+		else if (map[yMath][xMath2] != null) {
+			map[yMath][xMath2].collision(p);
 		}
 		// LowerLeft
-		else if (map[YMath2][XMath] != null) {
-			map[YMath2][XMath].collision(p);
+		else if (map[yMath2][xMath] != null) {
+			map[yMath2][xMath].collision(p);
 		}
 		// LowerRight
-		else if (map[YMath2][XMath2] != null) {
-			map[YMath2][XMath2].collision(p);
+		else if (map[yMath2][xMath2] != null) {
+			map[yMath2][xMath2].collision(p);
 		}
 	}
 
@@ -141,8 +136,8 @@ public class Level {
 	 *
 	 * @return the id
 	 */
-	public int getID() {
-		return ID;
+	public int getLevelID() {
+		return levelID;
 	}
 
 	/**
@@ -196,7 +191,7 @@ public class Level {
 	 * @return the screen height
 	 */
 	public int getScreenHeight() {
-		return screenHeight;
+		return SCREEN_HEIGHT;
 	}
 
 	/**
@@ -223,7 +218,7 @@ public class Level {
 	 * @return the tile height
 	 */
 	public int getTileHeight() {
-		return tileHeight;
+		return TILE_HEIGHT;
 	}
 
 	/**
@@ -232,7 +227,7 @@ public class Level {
 	 * @return the tile width
 	 */
 	public int getTileWidth() {
-		return tileWidth;
+		return TILE_WIDTH;
 	}
 
 	/**
@@ -251,7 +246,7 @@ public class Level {
 	 * @throws FileNotFoundException the file not found exception
 	 */
 	private void parseMap() throws FileNotFoundException {
-		Scanner scan = new Scanner(ResourceHandler.getLevelFile(ID + ".map"));
+		Scanner scan = new Scanner(ResourceHandler.getLevelFile(levelID + ".map"));
 		for (int i = 0; i < levelHeight; i++) {
 			for (int j = 0; j < levelWidth; j++) {
 				String text = scan.next();
@@ -278,11 +273,12 @@ public class Level {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws FileNotFoundException the file not found exception
 	 */
-	private void parseMeta() throws IOException {
-		configFile.load(new FileInputStream(ResourceHandler.getLevelFile(ID
-				+ ".meta")));
+	private void parseMeta() throws IOException, FileNotFoundException {
+        // ResourceHandler checks if the file exists.
+        configFile.load(new FileInputStream(ResourceHandler.getLevelFile(levelID
+                + ".meta")));
 
-		levelWidth = Integer.parseInt(configFile.getProperty("WIDTH"));
+        levelWidth = Integer.parseInt(configFile.getProperty("WIDTH"));
 		levelHeight = Integer.parseInt(configFile.getProperty("HEIGHT"));
 
 		startX = Integer.parseInt(configFile.getProperty("STARTX"));
@@ -308,7 +304,7 @@ public class Level {
 	 * Update level index.
 	 */
 	public void updateLevelIndex() {
-		if (innerTile >= tileHeight) {
+		if (innerTile >= TILE_HEIGHT) {
 			innerTile = 0;
 			if (topIndex > 0) {
 				topIndex--;

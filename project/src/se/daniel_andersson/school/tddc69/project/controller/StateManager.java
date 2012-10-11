@@ -3,15 +3,15 @@
  */
 package se.daniel_andersson.school.tddc69.project.controller;
 
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-
+import se.daniel_andersson.school.tddc69.project.controller.states.GameOverState;
 import se.daniel_andersson.school.tddc69.project.controller.states.GameState;
 import se.daniel_andersson.school.tddc69.project.controller.states.HelpState;
 import se.daniel_andersson.school.tddc69.project.controller.states.MenuState;
 import se.daniel_andersson.school.tddc69.project.model.State;
 import se.daniel_andersson.school.tddc69.project.model.StateChangeListener;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -47,6 +47,7 @@ public class StateManager implements StateChangeListener {
 		states.add(new MenuState());
 		states.add(new HelpState());
 		states.add(new GameState());
+        states.add(new GameOverState());
 	}
 
 	/**

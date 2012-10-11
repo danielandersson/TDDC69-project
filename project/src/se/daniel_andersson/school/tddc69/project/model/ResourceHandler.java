@@ -3,13 +3,12 @@
  */
 package se.daniel_andersson.school.tddc69.project.model;
 
+import se.daniel_andersson.school.tddc69.project.TestStateGame;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import se.daniel_andersson.school.tddc69.project.TestStateGame;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -31,7 +30,7 @@ public class ResourceHandler {
 			return ImageIO.read(file);
 		} catch (IOException e) {
 			System.out.println("Image " + image + " do not exist.");
-			System.exit(0);
+			System.exit(10);
 			return null;
 		}
 	}
@@ -43,13 +42,17 @@ public class ResourceHandler {
 	 * @return the level file
 	 */
 	public static File getLevelFile(String f) {
-		File file = new File(TestStateGame.class.getResource(
-				"assets/level/" + f).getFile());
-		System.out.println("Read file: " + file.getAbsolutePath());
-		if (file.exists()) {
-			return file;
-		} else
-			return null;
+        File file;
+        try {
+            file = new File(TestStateGame.class.getResource(
+                    "assets/level/" + f).getFile());
+            System.out.println("Read file: " + file.getAbsolutePath());
+            return file;
+        } catch (Exception e) {
+            System.out.println("File " + f + " do not exist.");
+            System.exit(10);
+            return null;
+        }
 	}
 
 	/**

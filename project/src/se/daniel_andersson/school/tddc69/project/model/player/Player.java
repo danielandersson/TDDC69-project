@@ -3,12 +3,12 @@
  */
 package se.daniel_andersson.school.tddc69.project.model.player;
 
+import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
+
 import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,10 +17,10 @@ import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
 public class Player {
 
 	/** The X coord. */
-	private int XCoord;
+	private int xCoord;
 	
 	/** The Y coord. */
-	private int YCoord;
+	private int yCoord;
 	
 	/** The current mode. */
 	private Mode currentMode = new Normal();
@@ -34,12 +34,12 @@ public class Player {
 	/**
 	 * Instantiates a new player.
 	 *
-	 * @param XCoord the x coord
-	 * @param YCoord the y coord
+	 * @param xCoord the x coord
+	 * @param yCoord the y coord
 	 */
-	public Player(int XCoord, int YCoord) {
-		this.XCoord = XCoord;
-		this.YCoord = YCoord;
+	public Player(int xCoord, int yCoord) {
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class Player {
 	 *
 	 * @return the x coord
 	 */
-	public int getXCoord() {
-		return XCoord;
+	public int getxCoord() {
+		return xCoord;
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class Player {
 	 *
 	 * @return the y coord
 	 */
-	public int getYCoord() {
-		return YCoord;
+	public int getyCoord() {
+		return yCoord;
 	}
 
 	/**
@@ -180,19 +180,19 @@ public class Player {
 	/**
 	 * Sets the x coord.
 	 *
-	 * @param XCoord the new x coord
+	 * @param xCoord the new x coord
 	 */
-	public void setXCoord(int XCoord) {
-		this.XCoord = XCoord;
+	public void setxCoord(int xCoord) {
+		this.xCoord = xCoord;
 	}
 
 	/**
 	 * Sets the y coord.
 	 *
-	 * @param YCoord the new y coord
+	 * @param yCoord the new y coord
 	 */
-	public void setYCoord(int YCoord) {
-		this.YCoord = YCoord;
+	public void setyCoord(int yCoord) {
+		this.yCoord = yCoord;
 	}
 
 	/**

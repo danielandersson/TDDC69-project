@@ -53,10 +53,10 @@ public class Game {
 				gameCompleted = true;
 			else {
 				currentLevel = new Level(currentLevel.getNextLevel());
-				player.setXCoord(currentLevel.getTileWidth()
-						* currentLevel.getStartX());
-				player.setYCoord(currentLevel.getTileHeight()
-						* currentLevel.getStartY());
+				player.setxCoord(currentLevel.getTileWidth()
+                        * currentLevel.getStartX());
+				player.setyCoord(currentLevel.getTileHeight()
+                        * currentLevel.getStartY());
 				player.setLevelAdvance(false);
 			}
 		} else {
@@ -64,11 +64,11 @@ public class Game {
 				int prevLife = player.getLife();
 				currentLevel.collision(player);
 				if (player.getLife() != prevLife) {
-					currentLevel = new Level(currentLevel.getID());
-					player.setXCoord(currentLevel.getTileWidth()
-							* currentLevel.getStartX());
-					player.setYCoord(currentLevel.getTileHeight()
-							* currentLevel.getStartY());
+					currentLevel = new Level(currentLevel.getLevelID());
+					player.setxCoord(currentLevel.getTileWidth()
+                            * currentLevel.getStartX());
+					player.setyCoord(currentLevel.getTileHeight()
+                            * currentLevel.getStartY());
 				}
 			}
 			if (!levelComplete())

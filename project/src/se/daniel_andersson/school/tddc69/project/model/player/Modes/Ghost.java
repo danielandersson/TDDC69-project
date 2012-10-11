@@ -3,11 +3,11 @@
  */
 package se.daniel_andersson.school.tddc69.project.model.player.Modes;
 
-import java.awt.image.BufferedImage;
-
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Mode;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -15,11 +15,11 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
  */
 public class Ghost implements Mode {
 	
-	/** The time. */
-	private static final int time = 5000;
+	/** The TIME. */
+	private static final int TIME = 5000;
 	
-	/** The speed. */
-	private static final int speed = 5;
+	/** The SPEED. */
+	private static final int SPEED = 5;
 	
 	/** The texture. */
 	private static BufferedImage texture = null;
@@ -45,7 +45,7 @@ public class Ghost implements Mode {
 	 */
 	@Override
 	public int getSpeed() {
-		return speed;
+		return SPEED;
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +61,7 @@ public class Ghost implements Mode {
 	 */
 	@Override
 	public int getTime() {
-		return time;
+		return TIME;
 	}
 
 	/* (non-Javadoc)
@@ -70,7 +70,7 @@ public class Ghost implements Mode {
 	@Override
 	public void moveDown(Player p) {
 		if (p.isAlive())
-			p.setYCoord(p.getYCoord() - speed);
+			p.setyCoord(p.getyCoord() - SPEED);
 	}
 
 	/* (non-Javadoc)
@@ -79,7 +79,7 @@ public class Ghost implements Mode {
 	@Override
 	public void moveLeft(Player p) {
 		if (p.isAlive())
-			p.setXCoord(p.getXCoord() - speed);
+			p.setxCoord(p.getxCoord() - SPEED);
 	}
 
 	/* (non-Javadoc)
@@ -88,7 +88,7 @@ public class Ghost implements Mode {
 	@Override
 	public void moveRight(Player p) {
 		if (p.isAlive())
-			p.setXCoord(p.getXCoord() + speed);
+			p.setxCoord(p.getxCoord() + SPEED);
 	}
 
 	/* (non-Javadoc)
@@ -97,6 +97,6 @@ public class Ghost implements Mode {
 	@Override
 	public void moveUp(Player p) {
 		if (p.isAlive())
-			p.setYCoord(p.getYCoord() + speed);
+			p.setyCoord(p.getyCoord() + SPEED);
 	}
 }

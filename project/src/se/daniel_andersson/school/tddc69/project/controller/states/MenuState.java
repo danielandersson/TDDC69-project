@@ -3,20 +3,13 @@
  */
 package se.daniel_andersson.school.tddc69.project.controller.states;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.KeyStroke;
-
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.State;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,11 +25,11 @@ public class MenuState extends State {
 	/** The current option. */
 	private int currentOption = 0;
 	
-	/** The Constant menuItems. */
-	private static final int menuItems = 3;
+	/** The Constant MENU_ITEMS. */
+	private static final int MENU_ITEMS = 3;
 	
-	/** The bg. */
-	private final BufferedImage bg = ResourceHandler.getImage("menubg.jpg");
+	/** The backgroundImage. */
+	private final BufferedImage backgroundImage = ResourceHandler.getImage("menubg.jpg");
 	
 	/** The logo. */
 	private final BufferedImage logo = ResourceHandler.getImage("logo.png");
@@ -73,7 +66,7 @@ public class MenuState extends State {
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(bg, 0, 0, null);
+		g2.drawImage(backgroundImage, 0, 0, null);
 		g2.drawImage(logo, 100, 100, null);
 		paintMenu(g2);
 	}
@@ -136,7 +129,7 @@ public class MenuState extends State {
 		final Action menuDown = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (currentOption < menuItems - 1)
+				if (currentOption < MENU_ITEMS - 1)
 					currentOption++;
 			}
 		};

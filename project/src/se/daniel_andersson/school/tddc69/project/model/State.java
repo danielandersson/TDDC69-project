@@ -3,13 +3,11 @@
  */
 package se.daniel_andersson.school.tddc69.project.model;
 
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JComponent;
-import javax.swing.Timer;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -26,11 +24,8 @@ public class State extends JComponent implements Runnable {
 	
 	/** The screen. */
     protected BufferedImage screen;
-	
-	/** The g. */
-	private Graphics2D g;
 
-	/** The name. */
+    /** The name. */
 	public final String name;
 
 	/** The listener. */
@@ -59,7 +54,8 @@ public class State extends JComponent implements Runnable {
 	 * @return the graphics2 d
 	 */
 	public Graphics2D getGraphics2D() {
-		g = screen.createGraphics();
+        /* The g. */
+        Graphics2D g = screen.createGraphics();
 		return g;
 	}
 

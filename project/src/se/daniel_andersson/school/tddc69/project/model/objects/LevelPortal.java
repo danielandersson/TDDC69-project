@@ -3,11 +3,11 @@
  */
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
-import java.awt.image.BufferedImage;
-
 import se.daniel_andersson.school.tddc69.project.model.GameObject;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,8 +30,8 @@ public class LevelPortal implements GameObject {
 	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#collision(se.daniel_andersson.school.tddc69.project.model.player.Player)
 	 */
 	@Override
-	public void collision(Player p) {
-		p.setLevelAdvance(true);
+	public void collision(Player object) {
+		object.setLevelAdvance(true);
 	}
 
     /* (non-Javadoc)

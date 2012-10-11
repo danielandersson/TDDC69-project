@@ -3,14 +3,10 @@
  */
 package se.daniel_andersson.school.tddc69.project.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JComponent;
-
 import se.daniel_andersson.school.tddc69.project.controller.Game;
+
+import javax.swing.*;
+import java.awt.*;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -20,10 +16,10 @@ import se.daniel_andersson.school.tddc69.project.controller.Game;
 public class GraphicalViewer extends JComponent {
 	
 	/** The width. */
-	private static int WIDTH;
+	private static int componentWidth;
 	
 	/** The height. */
-	private static int HEIGHT;
+	private static int componentHeight;
 
 	/** The main game. */
 	private final Game mainGame;
@@ -35,9 +31,9 @@ public class GraphicalViewer extends JComponent {
 	 */
 	public GraphicalViewer(Game mainGame) {
 		this.mainGame = mainGame;
-		HEIGHT = mainGame.getLevel().getScreenHeight()
+		componentHeight = mainGame.getLevel().getScreenHeight()
 				* mainGame.getLevel().getTileHeight();
-		WIDTH = mainGame.getLevel().getLevelWidth()
+		componentWidth = mainGame.getLevel().getLevelWidth()
 				* mainGame.getLevel().getTileWidth();
 	}
 
@@ -46,7 +42,7 @@ public class GraphicalViewer extends JComponent {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(WIDTH, HEIGHT);
+		return new Dimension(componentWidth, componentHeight);
 	}
 
 	/* (non-Javadoc)
@@ -84,14 +80,14 @@ public class GraphicalViewer extends JComponent {
 	 * @param g2 the g2
 	 */
 	private void paintDebug(final Graphics2D g2) {
-		int XMath = mainGame.getPlayer().getXCoord();
-		int YMath = mainGame.getPlayer().getYCoord()
+		int xMath = mainGame.getPlayer().getxCoord();
+		int yMath = mainGame.getPlayer().getyCoord()
 				- mainGame.getLevel().getTopIndex();
 		g2.setColor(Color.BLACK);
-		g2.drawString("Player X: " + mainGame.getPlayer().getXCoord()
-				+ " Relative: " + XMath, 5, 15);
-		g2.drawString("Player Y: " + mainGame.getPlayer().getYCoord()
-				+ " Relative: " + YMath, 5, 25);
+		g2.drawString("Player X: " + mainGame.getPlayer().getxCoord()
+				+ " Relative: " + xMath, 5, 15);
+		g2.drawString("Player Y: " + mainGame.getPlayer().getyCoord()
+				+ " Relative: " + yMath, 5, 25);
 		g2.drawString("Player Mode: "
 				+ mainGame.getPlayer().getCurrentMode().getClass()
 						.getSimpleName(), 5, 35);
@@ -155,8 +151,8 @@ public class GraphicalViewer extends JComponent {
 	 */
 	private void paintPlayer(final Graphics2D g2) {
 		g2.setColor(Color.PINK);
-		int XMath = mainGame.getPlayer().getXCoord();
-		int YMath = HEIGHT - (mainGame.getPlayer().getYCoord() + 1);
+		int XMath = mainGame.getPlayer().getxCoord();
+		int YMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1);
 		g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame
 				.getLevel().getTileWidth(),
 				mainGame.getLevel().getTileHeight(), null);

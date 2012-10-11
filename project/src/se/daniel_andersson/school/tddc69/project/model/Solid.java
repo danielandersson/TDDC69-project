@@ -21,8 +21,8 @@ public abstract class Solid implements GameObject {
 	 * @see se.daniel_andersson.school.tddc69.project.model.GameObject#collision(se.daniel_andersson.school.tddc69.project.model.player.Player)
 	 */
 	@Override
-	public void collision(Player p) {
-		p.takeDamage();
+	public void collision(Player object) {
+		object.takeDamage();
 		System.out.println("Åker igenom solid");
 	}
 }

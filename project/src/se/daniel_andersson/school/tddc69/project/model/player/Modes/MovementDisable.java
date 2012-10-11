@@ -3,11 +3,11 @@
  */
 package se.daniel_andersson.school.tddc69.project.model.player.Modes;
 
-import java.awt.image.BufferedImage;
-
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Mode;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -18,11 +18,11 @@ public class MovementDisable implements Mode {
 	/** The texture. */
 	private static BufferedImage texture = null;
 
-	/** The time. */
-	private static final int time = 5000;
+	/** The TIME. */
+	private static final int TIME = 5000;
 
-	/** The speed. */
-	private static final int speed = 0;
+	/** The SPEED. */
+	private static final int SPEED = 0;
 	
 	/**
 	 * Instantiates a new movement disable.
@@ -45,7 +45,7 @@ public class MovementDisable implements Mode {
 	 */
 	@Override
 	public int getSpeed() {
-		return speed;
+		return SPEED;
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +61,7 @@ public class MovementDisable implements Mode {
 	 */
 	@Override
 	public int getTime() {
-		return time;
+		return TIME;
 	}
 
 	/* (non-Javadoc)

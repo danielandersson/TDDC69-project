@@ -3,20 +3,14 @@
  */
 package se.daniel_andersson.school.tddc69.project.controller.states;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.KeyStroke;
-
 import se.daniel_andersson.school.tddc69.project.controller.Game;
 import se.daniel_andersson.school.tddc69.project.model.State;
 import se.daniel_andersson.school.tddc69.project.view.GraphicalStateViewer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -88,7 +82,7 @@ public class GameState extends State {
 		} else if (mainGame.gameOver()) {
 			mainGame = new Game();
 			graphicalStateViewer = new GraphicalStateViewer(mainGame);
-			getListener().stateChanged("MenuState");
+			getListener().stateChanged("GameOverState");
 			System.out.println("Du doooog!!!!");
 		} else {
 			if (prevTimer + 90 < System.currentTimeMillis()) {
@@ -109,7 +103,7 @@ public class GameState extends State {
 		final Action moveUp = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getYCoord()
+				if (mainGame.getPlayer().getyCoord()
 						+ mainGame.getPlayer().getSpeed() < mainGame.getLevel()
 						.getScreenHeight()
 						* mainGame.getLevel().getTileHeight())
@@ -119,14 +113,14 @@ public class GameState extends State {
 		final Action moveLeft = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getXCoord() > 0)
+				if (mainGame.getPlayer().getxCoord() > 0)
 					mainGame.getPlayer().moveLeft();
 			}
 		};
 		final Action moveRight = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getXCoord() < mainGame.getLevel()
+				if (mainGame.getPlayer().getxCoord() < mainGame.getLevel()
 						.getLevelWidth()
 						* mainGame.getLevel().getTileWidth()
 						- mainGame.getLevel().getTileWidth())
@@ -136,7 +130,7 @@ public class GameState extends State {
 		final Action moveDown = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getYCoord() > mainGame.getLevel()
+				if (mainGame.getPlayer().getyCoord() > mainGame.getLevel()
 						.getTileHeight())
 					mainGame.getPlayer().moveDown();
 			}

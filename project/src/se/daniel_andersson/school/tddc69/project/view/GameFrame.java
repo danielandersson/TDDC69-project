@@ -3,17 +3,11 @@
  */
 package se.daniel_andersson.school.tddc69.project.view;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.KeyStroke;
-import javax.swing.WindowConstants;
-
 import se.daniel_andersson.school.tddc69.project.controller.Game;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -40,7 +34,7 @@ public class GameFrame extends JFrame {
 		final Action moveUp = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getYCoord()
+				if (mainGame.getPlayer().getyCoord()
 						+ mainGame.getPlayer().getSpeed() < mainGame.getLevel()
 						.getScreenHeight()
 						* mainGame.getLevel().getTileHeight())
@@ -50,14 +44,14 @@ public class GameFrame extends JFrame {
 		final Action moveLeft = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getXCoord() > 0)
+				if (mainGame.getPlayer().getxCoord() > 0)
 					mainGame.getPlayer().moveLeft();
 			}
 		};
 		final Action moveRight = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getXCoord() < mainGame.getLevel()
+				if (mainGame.getPlayer().getxCoord() < mainGame.getLevel()
 						.getLevelWidth()
 						* mainGame.getLevel().getTileWidth()
 						- mainGame.getLevel().getTileWidth())
@@ -67,7 +61,7 @@ public class GameFrame extends JFrame {
 		final Action moveDown = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (mainGame.getPlayer().getYCoord() > mainGame.getLevel()
+				if (mainGame.getPlayer().getyCoord() > mainGame.getLevel()
 						.getTileHeight())
 					mainGame.getPlayer().moveDown();
 			}

@@ -3,16 +3,12 @@
  */
 package se.daniel_andersson.school.tddc69.project.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JComponent;
-
 import se.daniel_andersson.school.tddc69.project.controller.Game;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -22,16 +18,16 @@ import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 public class GraphicalStateViewer extends JComponent {
 
 	/** The width. */
-	private static int WIDTH;
+	private static int componentWidth;
 	
 	/** The height. */
-	private static int HEIGHT;
+	private static int componentHeight;
 	
 	/** The main game. */
 	private final Game mainGame;
 	
-	/** The Constant heartTexture. */
-	private static final BufferedImage heartTexture = ResourceHandler
+	/** The Constant HEART_TEXTURE. */
+	private static final BufferedImage HEART_TEXTURE = ResourceHandler
 			.getImage("heart.png");
 
 	/**
@@ -41,9 +37,9 @@ public class GraphicalStateViewer extends JComponent {
 	 */
 	public GraphicalStateViewer(Game game) {
 		this.mainGame = game;
-		HEIGHT = mainGame.getLevel().getScreenHeight()
+		componentHeight = mainGame.getLevel().getScreenHeight()
 				* mainGame.getLevel().getTileHeight();
-		WIDTH = mainGame.getLevel().getLevelWidth()
+		componentWidth = mainGame.getLevel().getLevelWidth()
 				* mainGame.getLevel().getTileWidth();
 	}
 
@@ -52,7 +48,7 @@ public class GraphicalStateViewer extends JComponent {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(WIDTH, HEIGHT);
+		return new Dimension(componentWidth, componentHeight);
 	}
 
 	/* (non-Javadoc)
@@ -74,14 +70,14 @@ public class GraphicalStateViewer extends JComponent {
 	 */
 	@SuppressWarnings("unused")
 	private void paintDebug(final Graphics2D g2) {
-		int XMath = mainGame.getPlayer().getXCoord();
-		int YMath = mainGame.getPlayer().getYCoord()
+		int xMath = mainGame.getPlayer().getxCoord();
+		int yMath = mainGame.getPlayer().getyCoord()
 				- mainGame.getLevel().getTopIndex();
 		g2.setColor(Color.BLUE);
-		g2.drawString("Player X: " + mainGame.getPlayer().getXCoord()
-				+ " Relative: " + XMath, 5, 15);
-		g2.drawString("Player Y: " + mainGame.getPlayer().getYCoord()
-				+ " Relative: " + YMath, 5, 25);
+		g2.drawString("Player X: " + mainGame.getPlayer().getxCoord()
+				+ " Relative: " + xMath, 5, 15);
+		g2.drawString("Player Y: " + mainGame.getPlayer().getyCoord()
+				+ " Relative: " + yMath, 5, 25);
 		g2.drawString("Player Mode: "
 				+ mainGame.getPlayer().getCurrentMode().getClass()
 						.getSimpleName(), 5, 35);
@@ -105,7 +101,7 @@ public class GraphicalStateViewer extends JComponent {
 	private void paintInfo(final Graphics2D g2) {
 		g2.setColor(Color.RED);
 		for (int i = mainGame.getPlayer().getLife(); i > 0; i--) {
-			g2.drawImage(heartTexture, 10 + (i * 25), mainGame.getLevel()
+			g2.drawImage(HEART_TEXTURE, 10 + (i * 25), mainGame.getLevel()
 					.getScreenHeight()
 					* (mainGame.getLevel().getTileHeight() - 2), null);
 		}
@@ -123,14 +119,14 @@ public class GraphicalStateViewer extends JComponent {
 		for (int i = mainGame.getLevel().getTopIndex() - k; i <= mainGame
 				.getLevel().getBottomIndex(); i++) {
 			for (int j = 0; j < mainGame.getLevel().getLevelWidth(); j++) {
-				int XMath = mainGame.getLevel().getTileWidth() * j;
-				int YMath = mainGame.getLevel().getTileHeight()
+				int xMath = mainGame.getLevel().getTileWidth() * j;
+				int yMath = mainGame.getLevel().getTileHeight()
 						* (i - mainGame.getLevel().getTopIndex())
 						+ mainGame.getLevel().getInnerTile();
 				if (mainGame.getLevel().getMap()[i][j] != null) {
 					if (mainGame.getLevel().getMap()[i][j].getTexture() != null)
 						g2.drawImage(mainGame.getLevel().getMap()[i][j]
-								.getTexture(), XMath, YMath, mainGame
+								.getTexture(), xMath, yMath, mainGame
 								.getLevel().getTileWidth(), mainGame.getLevel()
 								.getTileHeight(), null);
 				}
@@ -145,8 +141,8 @@ public class GraphicalStateViewer extends JComponent {
 	 */
 	private void paintPlayer(final Graphics2D g2) {
 		g2.setColor(Color.PINK);
-		int XMath = mainGame.getPlayer().getXCoord();
-		int YMath = HEIGHT - (mainGame.getPlayer().getYCoord() + 1);
+		int XMath = mainGame.getPlayer().getxCoord();
+		int YMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1);
 		g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame
 				.getLevel().getTileWidth(),
 				mainGame.getLevel().getTileHeight(), null);
