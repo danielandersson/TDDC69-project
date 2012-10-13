@@ -85,6 +85,12 @@ public class Level {
 		}
 	}
 
+
+    public void reset(){
+        bottomIndex = levelHeight - 1;
+        topIndex = levelHeight - SCREEN_HEIGHT;
+    }
+
 	/**
 	 * Collision.
 	 *

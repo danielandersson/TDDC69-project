@@ -61,6 +61,7 @@ public class GraphicalStateViewer extends JComponent {
 		paintPlayer(g2);
 		paintInfo(g2);
 		// paintDebug(g2);
+        paintPoint(g2);
 	}
 
 	/**
@@ -92,6 +93,13 @@ public class GraphicalStateViewer extends JComponent {
 		g2.drawString("LevelsCompleted: " + mainGame.getLevelsCompleted(), 5,
 				95);
 	}
+
+
+    private void paintPoint(final Graphics2D g2) {
+        g2.setColor(Color.ORANGE);
+        g2.drawString("Total Points: "+mainGame.getTotalPoint(), 25, 15);
+        g2.drawString("Current Points: "+mainGame.getTemporaryPoint(), 25, 30);
+    }
 
 	/**
 	 * Paint info.

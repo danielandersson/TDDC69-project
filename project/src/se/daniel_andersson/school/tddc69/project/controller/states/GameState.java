@@ -75,15 +75,15 @@ public class GameState extends State {
 	@Override
 	public void update() {
 		if (mainGame.isGameCompleted()) {
-			mainGame = new Game();
-			graphicalStateViewer = new GraphicalStateViewer(mainGame);
 			getListener().stateChanged("GameCompletedState");
-			System.out.println("Du klarade spelet!!");
+			System.out.println("Du klarade spelet med " + mainGame.getTotalPoint() + " poäng!");
+            mainGame = new Game();
+            graphicalStateViewer = new GraphicalStateViewer(mainGame);
 		} else if (mainGame.gameOver()) {
 			mainGame = new Game();
 			graphicalStateViewer = new GraphicalStateViewer(mainGame);
 			getListener().stateChanged("GameOverState");
-			System.out.println("Du doooog!!!!");
+			System.out.println("Du dog med " + mainGame.getTotalPoint() + " poäng.");
 		} else {
 			if (prevTimer + 90 < System.currentTimeMillis()) {
 				super.update();

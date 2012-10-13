@@ -24,6 +24,17 @@ public class Game {
 	/** The levels completed. */
 	private int levelsCompleted;
 
+    public int getTemporaryPoint() {
+        return temporaryPoint;
+    }
+
+    public int getTotalPoint() {
+        return totalPoint;
+    }
+
+    private int totalPoint = 0;
+    private int temporaryPoint = 0;
+
 	/**
 	 * Instantiates a new game.
 	 */
@@ -49,6 +60,8 @@ public class Game {
 	public void gameTick() {
 		if (player.isLevelAdvance()) {
 			levelsCompleted++;
+            totalPoint += temporaryPoint;
+            temporaryPoint = 0;
 			if (currentLevel.getNextLevel() == 0)
 				gameCompleted = true;
 			else {
@@ -61,18 +74,21 @@ public class Game {
 			}
 		} else {
 			if (player.collisionAble()) {
-				int prevLife = player.getLife();
+				int beforeCollisionLife = player.getLife();
 				currentLevel.collision(player);
-				if (player.getLife() != prevLife) {
-					currentLevel = new Level(currentLevel.getLevelID());
+				if (player.getLife() != beforeCollisionLife) { //Checks if the player lost any health
+                    currentLevel.reset();
+                    temporaryPoint = 0;
 					player.setxCoord(currentLevel.getTileWidth()
                             * currentLevel.getStartX());
 					player.setyCoord(currentLevel.getTileHeight()
                             * currentLevel.getStartY());
 				}
 			}
-			if (!levelComplete())
-				currentLevel.updateLevelIndex();
+			if (!levelComplete()) {
+                currentLevel.updateLevelIndex();
+                temporaryPoint++;
+            }
 		}
 	}
 
