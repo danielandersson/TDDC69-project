@@ -77,7 +77,7 @@ public class GameState extends State {
 		if (mainGame.isGameCompleted()) {
 			mainGame = new Game();
 			graphicalStateViewer = new GraphicalStateViewer(mainGame);
-			getListener().stateChanged("MenuState");
+			getListener().stateChanged("GameCompletedState");
 			System.out.println("Du klarade spelet!!");
 		} else if (mainGame.gameOver()) {
 			mainGame = new Game();

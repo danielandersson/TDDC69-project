@@ -3,10 +3,7 @@
  */
 package se.daniel_andersson.school.tddc69.project.controller;
 
-import se.daniel_andersson.school.tddc69.project.controller.states.GameOverState;
-import se.daniel_andersson.school.tddc69.project.controller.states.GameState;
-import se.daniel_andersson.school.tddc69.project.controller.states.HelpState;
-import se.daniel_andersson.school.tddc69.project.controller.states.MenuState;
+import se.daniel_andersson.school.tddc69.project.controller.states.*;
 import se.daniel_andersson.school.tddc69.project.model.State;
 import se.daniel_andersson.school.tddc69.project.model.StateChangeListener;
 
@@ -48,6 +45,7 @@ public class StateManager implements StateChangeListener {
 		states.add(new HelpState());
 		states.add(new GameState());
         states.add(new GameOverState());
+        states.add(new GameCompletedState());
 	}
 
 	/**
