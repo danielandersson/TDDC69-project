@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.player.Modes;
 
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
@@ -9,19 +6,12 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Ghost.
+ * The Ghost mode class for the player. Makes the player able to drive through anything.
  */
 public class Ghost implements Mode {
-	
-	/** The TIME. */
 	private static final int TIME = 5000;
-	
-	/** The SPEED. */
 	private static final int SPEED = 5;
-	
-	/** The texture. */
 	private static BufferedImage texture = null;
 
 	/**

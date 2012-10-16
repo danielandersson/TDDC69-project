@@ -9,19 +9,12 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Fast.
+ * The Fast mode class for the player. The players speed is increased.
  */
 public class Fast implements Mode {
-	
-	/** The TIME. */
-	private static final int TIME = 5000;
-	
-	/** The SPEED. */
-	private static final int SPEED = 10;
-	
-	/** The texture. */
+    private static final int TIME = 5000;
+    private static final int SPEED = 10;
 	private static BufferedImage texture = null;
 
 	/**

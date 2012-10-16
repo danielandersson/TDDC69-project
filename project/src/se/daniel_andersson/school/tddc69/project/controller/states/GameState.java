@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.controller.states;
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
@@ -12,20 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GameState.
+ * The GameState class which is handling all the output of the game.
  */
 @SuppressWarnings("serial")
 public class GameState extends State {
-
-	/** The main game. */
     private Game mainGame;
-	
-	/** The graphical state viewer. */
     private GraphicalGameViewer graphicalGameViewer;
-	
-	/** The prev timer. */
     private long prevTimer;
 
 	/**
@@ -41,13 +31,6 @@ public class GameState extends State {
 				BufferedImage.TYPE_INT_RGB);
 		updateInputMap();
 	}
-
-	/*
-	 * @Override public void render() { Graphics2D g2 = getGraphics2D();
-	 * g2.setColor(new Color(Integer.parseInt(mainGame.getLevel().getBgColor(),
-	 * 16))); g2.setColor(Color.BLACK); g2.fill(this.getBounds());
-	 * graphicalGameViewer.paintComponent(g2); super.render(); }
-	 */
 
 	/* (non-Javadoc)
 	 * @see javax.swing.JComponent#getPreferredSize()

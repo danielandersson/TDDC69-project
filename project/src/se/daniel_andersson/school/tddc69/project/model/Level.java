@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.model.objects.*;
@@ -12,58 +9,29 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Level.
  */
 public class Level {
-
-	/** The id. */
 	private final int levelID;
-	
-	/** The screen height. */
 	private static final int SCREEN_HEIGHT = 20;
-	
-	/** The inner tile. */
 	private int innerTile = 0;
-	
-	/** The level width. */
 	private int levelWidth;
-	
-	/** The level height. */
 	private int levelHeight;
-	
-	/** The tile width. */
 	private static final int TILE_WIDTH = 20;
-	
-	/** The tile height. */
 	private static final int TILE_HEIGHT = 30;
-	
-	/** The start x. */
-	private int startX;
-	
-	/** The start y. */
-	private int startY;
-	
-	/** The bottom index. */
-	private int topIndex, bottomIndex;
-
-	/** The next level. */
+	private int startX; // Player start X tile
+	private int startY; // Player start Y tile
+	private int topIndex, bottomIndex; // The scrolling offsets
 	private int nextLevel;
-	
-	/** The bg color. */
 	private String bgColor;
-	
-	/** The map. */
 	private GameObject[][] map;
-	
-	/** The config file. */
     private final Properties configFile = new Properties();
 
 	/**
 	 * Instantiates a new level.
 	 *
-	 * @param levelID the id
+	 * @param levelID the id of the level
 	 */
 	public Level(int levelID) {
 		this.levelID = levelID;
@@ -85,22 +53,25 @@ public class Level {
 		}
 	}
 
-
+    /**
+     * Resets the current level
+     *
+     */
     public void reset(){
         bottomIndex = levelHeight - 1;
         topIndex = levelHeight - SCREEN_HEIGHT;
     }
 
 	/**
-	 * Collision.
+	 * Checks collision with the player
 	 *
-	 * @param p the p
+	 * @param p the player
 	 */
 	public void collision(Player p) {
-		int xMath = p.getxCoord() / TILE_WIDTH;
-		int xMath2 = (p.getxCoord() + TILE_WIDTH - 1) / TILE_WIDTH;
-		int yMath = bottomIndex - (p.getyCoord()) / TILE_HEIGHT;
-		int yMath2 = bottomIndex - (p.getyCoord() - TILE_HEIGHT) / TILE_HEIGHT;
+		int xMath = p.getxCoord() / TILE_WIDTH; // Top Left corner in the tile.
+		int xMath2 = (p.getxCoord() + TILE_WIDTH - 1) / TILE_WIDTH; // Top right corner in the tile.
+		int yMath = bottomIndex - (p.getyCoord()) / TILE_HEIGHT; // Bottom Left corner in the tile.
+		int yMath2 = bottomIndex - (p.getyCoord() - TILE_HEIGHT) / TILE_HEIGHT; // Bottom right corner in the tile.
 		// TopLeft
 		if (map[yMath][xMath] != null) {
 			map[yMath][xMath].collision(p);
@@ -120,9 +91,9 @@ public class Level {
 	}
 
 	/**
-	 * Gets the bg color.
+	 * Gets the background color.
 	 *
-	 * @return the bg color
+	 * @return the background color
 	 */
 	public String getBgColor() {
 		return bgColor;
@@ -135,15 +106,6 @@ public class Level {
 	 */
 	public int getBottomIndex() {
 		return bottomIndex;
-	}
-
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
-	public int getLevelID() {
-		return levelID;
 	}
 
 	/**
@@ -201,7 +163,7 @@ public class Level {
 	}
 
 	/**
-	 * Gets the start x.
+	 * Gets the player start x tile.
 	 *
 	 * @return the start x
 	 */
@@ -210,7 +172,7 @@ public class Level {
 	}
 
 	/**
-	 * Gets the start y.
+	 * Gets the player start y tile.
 	 *
 	 * @return the start y
 	 */
@@ -245,36 +207,8 @@ public class Level {
 		return topIndex;
 	}
 
-	// TODO: Fix the IF statement
 	/**
-	 * Parses the map.
-	 *
-	 * @throws FileNotFoundException the file not found exception
-	 */
-	private void parseMap() throws FileNotFoundException {
-		Scanner scan = new Scanner(ResourceHandler.getLevelFile(levelID + ".map"));
-		for (int i = 0; i < levelHeight; i++) {
-			for (int j = 0; j < levelWidth; j++) {
-				String text = scan.next();
-				if (text.equals("#"))
-					map[i][j] = new Stone();
-				else if (text.equals("&"))
-					map[i][j] = new Oil();
-				else if (text.equals("+"))
-					map[i][j] = new LevelPortal();
-				else if (text.equals("S"))
-					map[i][j] = new FastBuff();
-				else if (text.equals("G"))
-					map[i][j] = new GhostBuff();
-				else if (text.equals("T"))
-					map[i][j] = new Tree();
-			}
-		}
-		scan.close();
-	}
-
-	/**
-	 * Parses the meta.
+	 * Parses the meta information for the map.
 	 *
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @throws FileNotFoundException the file not found exception
@@ -294,8 +228,35 @@ public class Level {
 			nextLevel = 0;
 		else
 			nextLevel = Integer.parseInt(configFile.getProperty("NEXT"));
-
 	}
+
+    // TODO: Fix the IF statement
+    /**
+     * Parses the map.
+     *
+     * @throws FileNotFoundException the file not found exception
+     */
+    private void parseMap() throws FileNotFoundException {
+        Scanner scan = new Scanner(ResourceHandler.getLevelFile(levelID + ".map"));
+        for (int i = 0; i < levelHeight; i++) {
+            for (int j = 0; j < levelWidth; j++) {
+                String text = scan.next();
+                if (text.equals("#"))
+                    map[i][j] = new Stone();
+                else if (text.equals("&"))
+                    map[i][j] = new Oil();
+                else if (text.equals("+"))
+                    map[i][j] = new LevelPortal();
+                else if (text.equals("S"))
+                    map[i][j] = new FastBuff();
+                else if (text.equals("G"))
+                    map[i][j] = new GhostBuff();
+                else if (text.equals("T"))
+                    map[i][j] = new Tree();
+            }
+        }
+        scan.close();
+    }
 
 	/**
 	 * Reached end.

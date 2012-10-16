@@ -1,13 +1,9 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PowerUp.
+ * An general class for non-collision items that should help the player. All power ups should be a subclass of this.
  */
 public abstract class PowerUp implements GameObject {
 

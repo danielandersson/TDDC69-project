@@ -10,25 +10,14 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Player.
+ * The Player class.
  */
 public class Player {
-
-	/** The X coord. */
 	private int xCoord;
-	
-	/** The Y coord. */
-	private int yCoord;
-	
-	/** The current mode. */
+    private int yCoord;
 	private Mode currentMode = new Normal();
-	
-	/** The level advance. */
 	private boolean levelAdvance = false;
-	
-	/** The life. */
 	private int life = 5;
 
 	/**
@@ -168,6 +157,7 @@ public class Player {
 		currentMode = mode;
 	}
 
+    // TODO: Remove thos method if possible
 	/**
 	 * Sets the level advance.
 	 *

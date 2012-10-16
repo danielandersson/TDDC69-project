@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.player.Modes;
 
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
@@ -9,23 +6,16 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Normal.
+ * The Normal mode class for the player.
  */
 public class Normal implements Mode {
-	
-	/** The TIME. */
 	private static final int TIME = 0;
-	
-	/** The SPEED. */
 	private static final int SPEED = 5;
-	
-	/** The texture. */
 	private static BufferedImage texture = null;
 
 	/**
-	 * Instantiates a new normal.
+	 * Instantiates a new normal mode.
 	 */
 	public Normal() {
 		if (texture == null)

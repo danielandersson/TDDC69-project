@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.controller.states;
 
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
@@ -11,18 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class HelpState.
+ * The HelpState class.
  */
 @SuppressWarnings("serial")
 public class HelpState extends State {
 
-	/** The Constant SCREEN_HEIGHT. */
 	private static final int SCREEN_WIDTH = 1024;
     private static final int SCREEN_HEIGHT = 576;
-	
-	/** The backgroundImage. */
 	private final BufferedImage backgroundImage = ResourceHandler.getImage("helpbg.png");
 
 	/**

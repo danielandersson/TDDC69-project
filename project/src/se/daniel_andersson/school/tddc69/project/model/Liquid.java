@@ -1,13 +1,9 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Liquid.
+ * An general class for non-collision items that should affect the player. All liquids should be a subclass of this.
  */
 public abstract class Liquid implements GameObject {
 
@@ -22,7 +18,6 @@ public abstract class Liquid implements GameObject {
 	 */
 	@Override
 	public void collision(Player object) {
-		// Do nothing
 		System.out.println("Åker igenom vätska");
 	}
 }

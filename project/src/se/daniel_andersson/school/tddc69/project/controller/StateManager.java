@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.controller;
 
 import se.daniel_andersson.school.tddc69.project.controller.states.*;
@@ -10,25 +7,19 @@ import se.daniel_andersson.school.tddc69.project.model.StateChangeListener;
 import javax.swing.*;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StateManager.
+ * The StateManager class. This class is managing all the states and switches between them.
  */
 public class StateManager implements StateChangeListener {
 
-	/** The states. */
 	private final ArrayList<State> states;
-	
-	/** The current state. */
 	private int currentState;
-	
-	/** The state frame. */
 	private final JFrame stateFrame;
 
 	/**
 	 * Instantiates a new state manager.
 	 *
-	 * @param j the j
+	 * @param j the JFrame we uses for draw the stats
 	 */
 	public StateManager(JFrame j) {
 		stateFrame = j;
@@ -37,10 +28,10 @@ public class StateManager implements StateChangeListener {
 	}
 
 	/**
-	 * Inits the all states.
+	 * Initialize the all states.
 	 */
 	private void initAllStates() {
-		// TODO Add states
+		// TODO: Add states
 		states.add(new MenuState());
 		states.add(new HelpState());
 		states.add(new GameState());
@@ -51,7 +42,7 @@ public class StateManager implements StateChangeListener {
 	/**
 	 * Sets the current state.
 	 *
-	 * @param s the new current state
+	 * @param s the name of the new current state
 	 */
 	public void setCurrentState(String s) {
 		for (int i = 0; i < states.size(); i++) {

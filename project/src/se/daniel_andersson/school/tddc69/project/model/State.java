@@ -11,56 +11,28 @@ import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class State.
+ * An superclass for all the different states.
  */
 @SuppressWarnings("serial")
-public class State extends JComponent implements Runnable {
+public abstract class State extends JComponent implements Runnable {
 
-	/** The running. */
 	private volatile boolean running = false;
-
-	/** The ticks. */
-	private long ticks = 0;
-	
-	/** The screen. */
+	private long ticks = 0; // Useless now but can be useful in the future.
     protected BufferedImage screen;
-
-    /** The name. */
 	public final String name;
-
-	/** The listener. */
 	private StateChangeListener listener = null;
-
-	/** The render task. */
-    private final ActionListener renderTask = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent evt) {
-			repaint();
-		}
-	};
 
 	/**
 	 * Instantiates a new state.
 	 *
-	 * @param s the s
+	 * @param s the name of the state
 	 */
     protected State(String s) {
 		name = s;
 	}
 
 	/**
-	 * Gets the graphics2 d.
-	 *
-	 * @return the graphics2 d
-	 */
-	public Graphics2D getGraphics2D() {
-        /* The g. */
-        Graphics2D g = screen.createGraphics();
-		return g;
-	}
-
-	/**
-	 * Gets the listener.
+	 * Gets the state change listener.
 	 *
 	 * @return the listener
 	 */
@@ -68,17 +40,26 @@ public class State extends JComponent implements Runnable {
 		return listener;
 	}
 
+    /**
+     * Sets the listener.
+     *
+     * @param listener the new listener
+     */
+    public void setListener(StateChangeListener listener) {
+        this.listener = listener;
+    }
+
 	/**
 	 * Gets the ticks.
 	 *
-	 * @return the ticks
+	 * @return the number of ticks
 	 */
 	public long getTicks() {
 		return ticks;
 	}
 
 	/**
-	 * Checks if is running.
+	 * Checks if the state is running.
 	 *
 	 * @return true, if is running
 	 */
@@ -86,12 +67,23 @@ public class State extends JComponent implements Runnable {
 		return running;
 	}
 
+    /**
+     *  A new action listener for the timed repaint.
+     *
+     */
+    private final ActionListener renderTask = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            repaint();
+        }
+    };
+
 	/* (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
 	public void run() {
-		Timer renderTimer = new Timer(10, renderTask);
+		Timer renderTimer = new Timer(10, renderTask); // 10 ms gives us ~100 FPS.
 		renderTimer.start();
 		while (running) {
 			update();
@@ -99,23 +91,7 @@ public class State extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Sets the listener.
-	 *
-	 * @param listener the new listener
-	 */
-	public void setListener(StateChangeListener listener) {
-		this.listener = listener;
-	}
-
-	/*
-	 * public void render(){ Graphics g = null; try { g = getGraphics();
-	 * g.setColor(Color.GRAY); g.drawImage(screen, 0, 0, screen.getWidth(),
-	 * screen.getHeight(), this); } catch (NullPointerException e) {
-	 * System.out.println("NEJ!"); //e.printStackTrace(); } //repaint(); }
-	 */
-
-	/**
-	 * Start.
+	 * Start the current state.
 	 */
 	public void start() {
 		if (!running) {
@@ -125,7 +101,7 @@ public class State extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Stop.
+	 * Stop the current state.
 	 */
 	public void stop() {
 		if (running) {
@@ -134,14 +110,14 @@ public class State extends JComponent implements Runnable {
 	}
 
 	/**
-	 * Update.
+	 * Update the current state.
 	 */
     protected void update() {
 		ticks++;
 	}
 
 	/**
-	 * Update input map.
+	 * Update input map with new inputs.
 	 */
 	public void updateInputMap() {
 	}

@@ -1,13 +1,10 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Solid.
+ * The abstract class Solid is used as a superclass for some game objects. The idea is that everything that should hurt
+ * the player should be an subclass of Solid.
  */
 public abstract class Solid implements GameObject {
 

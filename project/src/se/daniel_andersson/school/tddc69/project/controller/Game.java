@@ -1,37 +1,17 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.controller;
 
 import se.daniel_andersson.school.tddc69.project.model.Level;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Game.
+ * The Game class which controls the game and its logic.
  */
 public class Game {
 
-	/** The player. */
 	private final Player player;
-	
-	/** The current level. */
 	private Level currentLevel;
-	
-	/** The game completed. */
 	private boolean gameCompleted;
-
-	/** The levels completed. */
 	private int levelsCompleted;
-
-    public int getTemporaryPoint() {
-        return temporaryPoint;
-    }
-
-    public int getTotalPoint() {
-        return totalPoint;
-    }
-
     private int totalPoint = 0;
     private int temporaryPoint = 0;
 
@@ -55,7 +35,7 @@ public class Game {
 	}
 
 	/**
-	 * Game tick.
+	 * The game update method.
 	 */
 	public void gameTick() {
 		if (player.isLevelAdvance()) {
@@ -136,4 +116,22 @@ public class Game {
 	public boolean levelComplete() {
 		return currentLevel.reachedEnd();
 	}
+
+    /**
+     * Get temporaryPoint.
+     *
+     * @return temporaryPoint
+     */
+    public int getTemporaryPoint() {
+        return temporaryPoint;
+    }
+
+    /**
+     * Get totalPoints.
+     *
+     * @return totalPoints
+     */
+    public int getTotalPoint() {
+        return totalPoint;
+    }
 }

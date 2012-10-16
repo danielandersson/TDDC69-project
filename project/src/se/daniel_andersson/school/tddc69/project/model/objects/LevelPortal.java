@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
 import se.daniel_andersson.school.tddc69.project.model.GameObject;
@@ -9,9 +6,8 @@ import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class LevelPortal.
+ * The class for the Level Portal object
  */
 public class LevelPortal implements GameObject {
 	

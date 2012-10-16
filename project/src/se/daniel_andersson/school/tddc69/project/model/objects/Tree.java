@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
 import java.awt.image.BufferedImage;
@@ -8,13 +5,11 @@ import java.awt.image.BufferedImage;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.Solid;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Tree.
+ * The class for the Tree object
  */
 public class Tree extends Solid {
 	
-	/** The texture. */
 	private static BufferedImage texture = null;
 
 	/**

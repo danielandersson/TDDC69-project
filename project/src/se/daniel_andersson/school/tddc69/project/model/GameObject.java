@@ -1,22 +1,18 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import java.awt.image.BufferedImage;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface GameObject.
+ * The interface for all game objects on the map.
  */
 public abstract interface GameObject {
 
 	/**
-	 * Collision.
+	 * Collision with the player, each subclass then has individual impacts.
 	 *
-	 * @param object the object
+	 * @param object the player
 	 */
 	public abstract void collision(Player object);
 

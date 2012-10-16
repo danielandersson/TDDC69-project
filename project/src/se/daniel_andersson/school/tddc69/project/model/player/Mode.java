@@ -1,13 +1,9 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.player;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface Mode.
+ * The interface for all modes.
  */
 public interface Mode {
 	
@@ -42,28 +38,28 @@ public interface Mode {
 	/**
 	 * Move down.
 	 *
-	 * @param p the p
+	 * @param p the player
 	 */
 	public void moveDown(Player p);
 
 	/**
 	 * Move left.
 	 *
-	 * @param p the p
+	 * @param p the player
 	 */
 	public void moveLeft(Player p);
 
 	/**
 	 * Move right.
 	 *
-	 * @param p the p
+	 * @param p the player
 	 */
 	public void moveRight(Player p);
 
 	/**
 	 * Move up.
 	 *
-	 * @param p the p
+	 * @param p the player
 	 */
 	public void moveUp(Player p);
 }

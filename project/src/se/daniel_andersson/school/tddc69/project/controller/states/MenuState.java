@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.controller.states;
 
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
@@ -11,27 +8,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MenuState.
+ * The MenuState class.
  */
 @SuppressWarnings("serial")
 public class MenuState extends State {
-
-	/** The Constant SCREEN_HEIGHT. */
 	private static final int SCREEN_WIDTH = 1024;
     private static final int SCREEN_HEIGHT = 576;
-	
-	/** The current option. */
 	private int currentOption = 0;
-	
-	/** The Constant MENU_ITEMS. */
 	private static final int MENU_ITEMS = 3;
-	
-	/** The backgroundImage. */
 	private final BufferedImage backgroundImage = ResourceHandler.getImage("menubg.jpg");
-	
-	/** The logo. */
 	private final BufferedImage logo = ResourceHandler.getImage("logo.png");
 
 	/**
@@ -44,13 +30,6 @@ public class MenuState extends State {
 		updateInputMap();
 	}
 
-	/*
-	 * @Override public void render(){ Graphics2D g = getGraphics2D();
-	 * g.setColor(Color.red); g.fillRect(100, 100, 100, 100);
-	 * g.setColor(Color.white); g.drawString("This is the menu state", 120,
-	 * 120); g.drawString("Option: " + currentOption, 120, 140); super.render();
-	 * }
-	 */
 
 	/* (non-Javadoc)
 	 * @see javax.swing.JComponent#getPreferredSize()
@@ -71,12 +50,14 @@ public class MenuState extends State {
 		paintMenu(g2);
 	}
 
+    //TODO: Fix all those magical numbers.
 	/**
 	 * Paint menu.
 	 *
-	 * @param g2 the g2
+	 * @param g2 the Graphics2D
 	 */
 	private void paintMenu(Graphics2D g2) {
+        // In this method there is a lot of magic numbers due to the positioning of the menu. sorry :(
 		int intPosX = 800, intPosY = 300;
 		g2.setFont(new Font("Corial", Font.PLAIN, 24));
 		g2.setColor(new Color(0, 0, 0, 100));

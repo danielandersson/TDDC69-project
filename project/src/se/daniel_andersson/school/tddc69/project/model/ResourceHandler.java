@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import se.daniel_andersson.school.tddc69.project.TestStateGame;
@@ -10,16 +7,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ResourceHandler.
+ * A general handler for all the file reading.
  */
 public class ResourceHandler {
 
 	/**
 	 * Gets the image.
 	 *
-	 * @param image the image
+	 * @param image the name of the image
 	 * @return the image
 	 */
 	public static BufferedImage getImage(String image) {
@@ -38,7 +34,7 @@ public class ResourceHandler {
 	/**
 	 * Gets the level file.
 	 *
-	 * @param f the f
+	 * @param f the name of the file
 	 * @return the level file
 	 */
 	public static File getLevelFile(String f) {

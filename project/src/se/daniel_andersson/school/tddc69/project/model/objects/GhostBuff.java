@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
 import java.awt.image.BufferedImage;
@@ -10,9 +7,8 @@ import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.player.Player;
 import se.daniel_andersson.school.tddc69.project.model.player.Modes.Ghost;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GhostBuff.
+ * The class for the Ghost Buff object
  */
 public class GhostBuff extends PowerUp {
 	

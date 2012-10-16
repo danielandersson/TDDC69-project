@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project;
 
 import java.awt.event.ActionEvent;
@@ -13,9 +10,8 @@ import se.daniel_andersson.school.tddc69.project.controller.Game;
 import se.daniel_andersson.school.tddc69.project.view.GameFrame;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class TestGame.
+ * This class is an old version of the game. Now it is just for showof the MVC structure.
  */
 public class TestGame {
 
