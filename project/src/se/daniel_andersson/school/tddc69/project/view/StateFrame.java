@@ -3,8 +3,7 @@
  */
 package se.daniel_andersson.school.tddc69.project.view;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,7 +13,7 @@ import javax.swing.WindowConstants;
 public class StateFrame extends JFrame {
 
 	/**
-	 * Instantiates a new state frame.
+	 * Instantiates a new state frame. Each state will draw to this frame.
 	 */
 	public StateFrame() {
 		super("DV RACING");

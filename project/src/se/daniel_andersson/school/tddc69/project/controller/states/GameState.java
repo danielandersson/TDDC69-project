@@ -5,7 +5,7 @@ package se.daniel_andersson.school.tddc69.project.controller.states;
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
 import se.daniel_andersson.school.tddc69.project.model.State;
-import se.daniel_andersson.school.tddc69.project.view.GraphicalStateViewer;
+import se.daniel_andersson.school.tddc69.project.view.GraphicalGameViewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,7 @@ public class GameState extends State {
     private Game mainGame;
 	
 	/** The graphical state viewer. */
-    private GraphicalStateViewer graphicalStateViewer;
+    private GraphicalGameViewer graphicalGameViewer;
 	
 	/** The prev timer. */
     private long prevTimer;
@@ -34,10 +34,10 @@ public class GameState extends State {
 	public GameState() {
 		super("GameState");
 		mainGame = new Game();
-		graphicalStateViewer = new GraphicalStateViewer(mainGame);
+		graphicalGameViewer = new GraphicalGameViewer(mainGame);
 		screen = new BufferedImage(
-				graphicalStateViewer.getPreferredSize().width,
-				graphicalStateViewer.getPreferredSize().height,
+				graphicalGameViewer.getPreferredSize().width,
+				graphicalGameViewer.getPreferredSize().height,
 				BufferedImage.TYPE_INT_RGB);
 		updateInputMap();
 	}
@@ -46,7 +46,7 @@ public class GameState extends State {
 	 * @Override public void render() { Graphics2D g2 = getGraphics2D();
 	 * g2.setColor(new Color(Integer.parseInt(mainGame.getLevel().getBgColor(),
 	 * 16))); g2.setColor(Color.BLACK); g2.fill(this.getBounds());
-	 * graphicalStateViewer.paintComponent(g2); super.render(); }
+	 * graphicalGameViewer.paintComponent(g2); super.render(); }
 	 */
 
 	/* (non-Javadoc)
@@ -54,7 +54,7 @@ public class GameState extends State {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(graphicalStateViewer.getPreferredSize());
+		return new Dimension(graphicalGameViewer.getPreferredSize());
 	}
 
 	/* (non-Javadoc)
@@ -66,7 +66,7 @@ public class GameState extends State {
 		g2.setColor(new Color(Integer.parseInt(
 				mainGame.getLevel().getBgColor(), 16)));
 		g2.fill(this.getBounds());
-		graphicalStateViewer.paintComponent(g2);
+		graphicalGameViewer.paintComponent(g2);
 	}
 
 	/* (non-Javadoc)
@@ -78,12 +78,12 @@ public class GameState extends State {
 			getListener().stateChanged("GameCompletedState");
 			System.out.println("Du klarade spelet med " + mainGame.getTotalPoint() + " poäng!");
             mainGame = new Game();
-            graphicalStateViewer = new GraphicalStateViewer(mainGame);
+            graphicalGameViewer = new GraphicalGameViewer(mainGame);
 		} else if (mainGame.gameOver()) {
-			mainGame = new Game();
-			graphicalStateViewer = new GraphicalStateViewer(mainGame);
 			getListener().stateChanged("GameOverState");
 			System.out.println("Du dog med " + mainGame.getTotalPoint() + " poäng.");
+            mainGame = new Game();
+            graphicalGameViewer = new GraphicalGameViewer(mainGame);
 		} else {
 			if (prevTimer + 90 < System.currentTimeMillis()) {
 				super.update();
@@ -135,14 +135,22 @@ public class GameState extends State {
 					mainGame.getPlayer().moveDown();
 			}
 		};
+        final Action returnToMenu = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getListener().stateChanged("MenuState");
+            }
+        };
 
 		super.getInputMap().put(KeyStroke.getKeyStroke("UP"), "moveUp");
 		super.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
 		super.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
 		super.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
+        super.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "returnToMenu");
 		super.getActionMap().put("moveUp", moveUp);
 		super.getActionMap().put("moveLeft", moveLeft);
 		super.getActionMap().put("moveRight", moveRight);
 		super.getActionMap().put("moveDown", moveDown);
+        super.getActionMap().put("returnToMenu", returnToMenu);
 	}
 }

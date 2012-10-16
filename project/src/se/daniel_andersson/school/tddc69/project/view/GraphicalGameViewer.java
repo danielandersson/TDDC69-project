@@ -12,31 +12,25 @@ import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GraphicalStateViewer.
+ * The Class GraphicalGameViewer.
  */
 @SuppressWarnings("serial")
-public class GraphicalStateViewer extends JComponent {
+public class GraphicalGameViewer extends JComponent {
 
-	/** The width. */
 	private static int componentWidth;
-	
-	/** The height. */
 	private static int componentHeight;
-	
-	/** The main game. */
-	private final Game mainGame;
-	
-	/** The Constant HEART_TEXTURE. */
 	private static final BufferedImage HEART_TEXTURE = ResourceHandler
 			.getImage("heart.png");
+    private final Game mainGame;
 
 	/**
-	 * Instantiates a new graphical state viewer.
+	 * Instantiates a new graphical game viewer.
 	 *
-	 * @param game the game
+	 * @param game the mainGame
 	 */
-	public GraphicalStateViewer(Game game) {
+	public GraphicalGameViewer(Game game) {
 		this.mainGame = game;
+        // Calculates the Height & Width for the window.
 		componentHeight = mainGame.getLevel().getScreenHeight()
 				* mainGame.getLevel().getTileHeight();
 		componentWidth = mainGame.getLevel().getLevelWidth()
@@ -61,18 +55,17 @@ public class GraphicalStateViewer extends JComponent {
 		paintPlayer(g2);
 		paintInfo(g2);
 		// paintDebug(g2);
-        paintPoint(g2);
 	}
 
 	/**
-	 * Paint debug.
+	 * Paint debug information.
 	 *
-	 * @param g2 the g2
+	 * @param g2 the Graphical2D
 	 */
 	@SuppressWarnings("unused")
 	private void paintDebug(final Graphics2D g2) {
-		int xMath = mainGame.getPlayer().getxCoord();
-		int yMath = mainGame.getPlayer().getyCoord()
+		int xMath = mainGame.getPlayer().getxCoord(); // Calculate players X coordinate
+		int yMath = mainGame.getPlayer().getyCoord() // Calculate players Y coordinate
 				- mainGame.getLevel().getTopIndex();
 		g2.setColor(Color.BLUE);
 		g2.drawString("Player X: " + mainGame.getPlayer().getxCoord()
@@ -94,46 +87,44 @@ public class GraphicalStateViewer extends JComponent {
 				95);
 	}
 
-
-    private void paintPoint(final Graphics2D g2) {
-        g2.setColor(Color.ORANGE);
-        g2.drawString("Total Points: "+mainGame.getTotalPoint(), 25, 15);
-        g2.drawString("Current Points: "+mainGame.getTemporaryPoint(), 25, 30);
-    }
-
 	/**
-	 * Paint info.
+	 * Paint game info. Such as health and points.
 	 *
-	 * @param g2 the g2
+	 * @param g2 the Graphical2D
 	 */
 	private void paintInfo(final Graphics2D g2) {
 		g2.setColor(Color.RED);
-		for (int i = mainGame.getPlayer().getLife(); i > 0; i--) {
+		for (int i = mainGame.getPlayer().getLife(); i > 0; i--) { // Draw health with space between.
 			g2.drawImage(HEART_TEXTURE, 10 + (i * 25), mainGame.getLevel()
 					.getScreenHeight()
 					* (mainGame.getLevel().getTileHeight() - 2), null);
 		}
+        g2.setColor(Color.RED);
+        g2.drawString("Total Points: "+mainGame.getTotalPoint(), 25, 15);
+        g2.drawString("Current Points: "+mainGame.getTemporaryPoint(), 25, 30);
 	}
 
 	/**
 	 * Paint map.
 	 *
-	 * @param g2 the g2
+	 * @param g2 the Graphical2D
 	 */
 	private void paintMap(final Graphics2D g2) {
-		int k = 0;
+		// For the scrolling we need to draw an additional row on the top of the window.
+        int k = 0;
 		if (mainGame.getLevel().getTopIndex() > 0)
-			k = 1;
+            k = 1;
+
 		for (int i = mainGame.getLevel().getTopIndex() - k; i <= mainGame
 				.getLevel().getBottomIndex(); i++) {
+            int yMath = mainGame.getLevel().getTileHeight() // Calculate Y coordinate for the map.
+                    * (i - mainGame.getLevel().getTopIndex())
+                    + mainGame.getLevel().getInnerTile();
 			for (int j = 0; j < mainGame.getLevel().getLevelWidth(); j++) {
-				int xMath = mainGame.getLevel().getTileWidth() * j;
-				int yMath = mainGame.getLevel().getTileHeight()
-						* (i - mainGame.getLevel().getTopIndex())
-						+ mainGame.getLevel().getInnerTile();
+				int xMath = mainGame.getLevel().getTileWidth() * j; // Calculate X coordinate for the map.
 				if (mainGame.getLevel().getMap()[i][j] != null) {
 					if (mainGame.getLevel().getMap()[i][j].getTexture() != null)
-						g2.drawImage(mainGame.getLevel().getMap()[i][j]
+						g2.drawImage(mainGame.getLevel().getMap()[i][j] // Draw the texture for the specific gameObject
 								.getTexture(), xMath, yMath, mainGame
 								.getLevel().getTileWidth(), mainGame.getLevel()
 								.getTileHeight(), null);
@@ -145,12 +136,12 @@ public class GraphicalStateViewer extends JComponent {
 	/**
 	 * Paint player.
 	 *
-	 * @param g2 the g2
+	 * @param g2 the Graphical2D
 	 */
 	private void paintPlayer(final Graphics2D g2) {
 		g2.setColor(Color.PINK);
-		int XMath = mainGame.getPlayer().getxCoord();
-		int YMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1);
+		int XMath = mainGame.getPlayer().getxCoord(); // Calculate the X coordinate for the player.
+		int YMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1); // Calculate the Y coordinate for the player.
 		g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame
 				.getLevel().getTileWidth(),
 				mainGame.getLevel().getTileHeight(), null);
