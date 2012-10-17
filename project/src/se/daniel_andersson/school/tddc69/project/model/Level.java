@@ -35,7 +35,6 @@ public class Level {
 	 */
 	public Level(int levelID) {
 		this.levelID = levelID;
-
 		try {
 			parseMeta();
 			map = new GameObject[levelHeight][levelWidth];
@@ -215,8 +214,15 @@ public class Level {
 	 */
 	private void parseMeta() throws IOException, FileNotFoundException {
         // ResourceHandler checks if the file exists.
-        configFile.load(new FileInputStream(ResourceHandler.getLevelFile(levelID
-                + ".meta")));
+        FileInputStream levelStream = null;
+        try {
+            levelStream = new FileInputStream(ResourceHandler.getLevelFile(levelID + ".meta"));
+            configFile.load(levelStream);
+        } catch (IOException e) {
+            System.exit(10);
+        } finally {
+            levelStream.close();
+        }
 
         levelWidth = Integer.parseInt(configFile.getProperty("WIDTH"));
 		levelHeight = Integer.parseInt(configFile.getProperty("HEIGHT"));

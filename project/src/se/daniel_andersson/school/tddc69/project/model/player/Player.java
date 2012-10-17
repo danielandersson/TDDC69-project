@@ -157,7 +157,7 @@ public class Player {
 		currentMode = mode;
 	}
 
-    // TODO: Remove thos method if possible
+    // TODO: Remove method if possible
 	/**
 	 * Sets the level advance.
 	 *

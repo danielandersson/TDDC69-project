@@ -1,11 +1,11 @@
 package se.daniel_andersson.school.tddc69.project.model.objects;
 
-import java.awt.image.BufferedImage;
-
 import se.daniel_andersson.school.tddc69.project.model.PowerUp;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
-import se.daniel_andersson.school.tddc69.project.model.player.Player;
 import se.daniel_andersson.school.tddc69.project.model.player.Modes.Ghost;
+import se.daniel_andersson.school.tddc69.project.model.player.Player;
+
+import java.awt.image.BufferedImage;
 
 /**
  * The class for the Ghost Buff object
@@ -27,8 +27,8 @@ public class GhostBuff extends PowerUp {
 	 * @see se.daniel_andersson.school.tddc69.project.model.PowerUp#collision(se.daniel_andersson.school.tddc69.project.model.player.Player)
 	 */
 	@Override
-	public void collision(Player p) {
-		p.setCurrentMode(new Ghost());
+	public void collision(Player object) {
+		object.setCurrentMode(new Ghost());
 	}
 
     /* (non-Javadoc)

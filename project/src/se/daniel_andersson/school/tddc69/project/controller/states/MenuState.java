@@ -25,8 +25,6 @@ public class MenuState extends State {
 	 */
 	public MenuState() {
 		super("MenuState");
-		screen = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT,
-				BufferedImage.TYPE_INT_RGB);
 		updateInputMap();
 	}
 

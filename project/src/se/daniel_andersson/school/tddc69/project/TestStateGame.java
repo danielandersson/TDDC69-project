@@ -9,7 +9,10 @@ import se.daniel_andersson.school.tddc69.project.view.StateFrame;
 @SuppressWarnings("serial")
 public class TestStateGame {
 
-	/**
+    private TestStateGame() {
+    }
+
+    /**
 	 * The main method.
 	 *
 	 * @param args the arguments

@@ -7,7 +7,6 @@ import se.daniel_andersson.school.tddc69.project.view.GraphicalGameViewer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 
 /**
  * The GameState class which is handling all the output of the game.
@@ -25,11 +24,6 @@ public class GameState extends State {
 		super("GameState");
 		mainGame = new Game();
 		graphicalGameViewer = new GraphicalGameViewer(mainGame);
-		screen = new BufferedImage(
-				graphicalGameViewer.getPreferredSize().width,
-				graphicalGameViewer.getPreferredSize().height,
-				BufferedImage.TYPE_INT_RGB);
-		updateInputMap();
 	}
 
 	/* (non-Javadoc)

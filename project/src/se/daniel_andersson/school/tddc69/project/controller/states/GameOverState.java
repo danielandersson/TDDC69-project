@@ -27,9 +27,6 @@ public class GameOverState extends State {
      */
     public GameOverState() {
         super("GameOverState");
-        screen = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT,
-                BufferedImage.TYPE_INT_RGB);
-        updateInputMap();
     }
 
     /* (non-Javadoc)

@@ -3,7 +3,6 @@ package se.daniel_andersson.school.tddc69.project.controller.states;
 import se.daniel_andersson.school.tddc69.project.model.ResourceHandler;
 import se.daniel_andersson.school.tddc69.project.model.State;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,9 +26,6 @@ public class GameCompletedState extends State {
      */
     public GameCompletedState() {
         super("GameCompletedState");
-        screen = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT,
-                BufferedImage.TYPE_INT_RGB);
-        updateInputMap();
     }
 
     /* (non-Javadoc)

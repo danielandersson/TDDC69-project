@@ -23,9 +23,6 @@ public class HelpState extends State {
 	 */
 	public HelpState() {
 		super("HelpState");
-		screen = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT,
-				BufferedImage.TYPE_INT_RGB);
-		updateInputMap();
 	}
 
 	/* (non-Javadoc)

@@ -1,15 +1,9 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
  * An superclass for all the different states.
  */
@@ -18,7 +12,6 @@ public abstract class State extends JComponent implements Runnable {
 
 	private volatile boolean running = false;
 	private long ticks = 0; // Useless now but can be useful in the future.
-    protected BufferedImage screen;
 	public final String name;
 	private StateChangeListener listener = null;
 
@@ -54,6 +47,7 @@ public abstract class State extends JComponent implements Runnable {
 	 *
 	 * @return the number of ticks
 	 */
+    @SuppressWarnings("unused")
 	public long getTicks() {
 		return ticks;
 	}
@@ -63,6 +57,7 @@ public abstract class State extends JComponent implements Runnable {
 	 *
 	 * @return true, if is running
 	 */
+    @SuppressWarnings("unused")
 	public boolean isRunning() {
 		return running;
 	}
@@ -98,6 +93,7 @@ public abstract class State extends JComponent implements Runnable {
 			running = true;
 			new Thread(this).start();
 		}
+        updateInputMap();
 	}
 
 	/**
@@ -119,6 +115,5 @@ public abstract class State extends JComponent implements Runnable {
 	/**
 	 * Update input map with new inputs.
 	 */
-	public void updateInputMap() {
-	}
+	public abstract void updateInputMap();
 }

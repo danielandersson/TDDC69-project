@@ -140,9 +140,9 @@ public class GraphicalGameViewer extends JComponent {
 	 */
 	private void paintPlayer(final Graphics2D g2) {
 		g2.setColor(Color.PINK);
-		int XMath = mainGame.getPlayer().getxCoord(); // Calculate the X coordinate for the player.
-		int YMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1); // Calculate the Y coordinate for the player.
-		g2.drawImage(mainGame.getPlayer().getTexture(), XMath, YMath, mainGame
+		int xMath = mainGame.getPlayer().getxCoord(); // Calculate the X coordinate for the player.
+		int yMath = componentHeight - (mainGame.getPlayer().getyCoord() + 1); // Calculate the Y coordinate for the player.
+		g2.drawImage(mainGame.getPlayer().getTexture(), xMath, yMath, mainGame
 				.getLevel().getTileWidth(),
 				mainGame.getLevel().getTileHeight(), null);
 	}

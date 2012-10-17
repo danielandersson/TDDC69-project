@@ -70,10 +70,8 @@ public class StateManager implements StateChangeListener {
 	 */
 	@Override
 	public void stateChanged(String nextState) {
-		System.out.println("Byte State");
 		stopCurrentState();
 		setCurrentState(nextState);
-		states.get(currentState).updateInputMap();
 		startCurrentState();
 	}
 
