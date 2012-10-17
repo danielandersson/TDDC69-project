@@ -3,13 +3,11 @@ package se.daniel_andersson.school.tddc69.project;
 import se.daniel_andersson.school.tddc69.project.controller.StateManager;
 import se.daniel_andersson.school.tddc69.project.view.StateFrame;
 
-import javax.swing.*;
-
 /**
- * This is the main class for the project.s
+ * This is the main class for the project.
  */
 @SuppressWarnings("serial")
-public class TestStateGame extends JFrame {
+public class TestStateGame {
 
 	/**
 	 * The main method.
