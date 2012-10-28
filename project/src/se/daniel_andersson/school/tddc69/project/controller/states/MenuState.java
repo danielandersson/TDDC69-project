@@ -48,7 +48,6 @@ public class MenuState extends State {
 		paintMenu(g2);
 	}
 
-    //TODO: Fix all those magical numbers.
 	/**
 	 * Paint menu.
 	 *
@@ -57,31 +56,31 @@ public class MenuState extends State {
 	private void paintMenu(Graphics2D g2) {
         // In this method there is a lot of magic numbers due to the positioning of the menu. sorry :(
 		int intPosX = 800, intPosY = 300;
+        int menuItemWidth = 160, menuItemHeight = 40;
+        int menuItemSpace = 60, menuStringXPadding = 28, menuStringYPadding = 15;
+
 		g2.setFont(new Font("Corial", Font.PLAIN, 24));
 		g2.setColor(new Color(0, 0, 0, 100));
-		g2.fillRect(intPosX, intPosY, 160, 40);
-		g2.fillRect(intPosX, intPosY + 60, 160, 40);
-		g2.fillRect(intPosX, intPosY + 120, 160, 40);
+
+        for (int i = 0; i < MENU_ITEMS; i++) {
+            g2.fillRect(intPosX, intPosY + (i*menuItemSpace), menuItemWidth, menuItemHeight);
+        }
+        g2.setColor(Color.BLACK);
+        g2.fillRect(intPosX, intPosY + (menuItemSpace*currentOption), menuItemWidth, menuItemHeight);
 		if (currentOption == 0) {
-			g2.setColor(Color.BLACK);
-			g2.fillRect(intPosX, intPosY, 160, 40);
 			g2.setColor(Color.WHITE);
-			g2.drawString("New Game", intPosX + 15, intPosY + 28);
+			g2.drawString("New Game", intPosX + menuStringYPadding, intPosY + (menuItemSpace*currentOption) + menuStringXPadding);
 		} else if (currentOption == 1) {
-			g2.setColor(Color.BLACK);
-			g2.fillRect(intPosX, intPosY + 60, 160, 40);
 			g2.setColor(Color.WHITE);
-			g2.drawString("How to play?", intPosX + 15, intPosY + 60 + 28);
+			g2.drawString("How to play?", intPosX + menuStringYPadding, intPosY + (menuItemSpace*currentOption) + menuStringXPadding);
 		} else if (currentOption == 2) {
-			g2.setColor(Color.BLACK);
-			g2.fillRect(intPosX, intPosY + 120, 160, 40);
 			g2.setColor(Color.WHITE);
-			g2.drawString("Exit", intPosX + 15, intPosY + 120 + 28);
+			g2.drawString("Exit", intPosX + menuStringYPadding, intPosY + (menuItemSpace*currentOption) + menuStringXPadding);
 		}
 		g2.setColor(new Color(255, 255, 255, 100));
-		g2.drawString("New Game", intPosX + 15, intPosY + 28);
-		g2.drawString("How to play?", intPosX + 15, intPosY + 60 + 28);
-		g2.drawString("Exit", intPosX + 15, intPosY + 120 + 28);
+		g2.drawString("New Game", intPosX + menuStringYPadding, intPosY + 0*menuItemSpace + menuStringXPadding);
+		g2.drawString("How to play?", intPosX + menuStringYPadding, intPosY + 1*menuItemSpace + menuStringXPadding);
+		g2.drawString("Exit", intPosX + menuStringYPadding, intPosY + 2*menuItemSpace + menuStringXPadding);
 	}
 
 	/* (non-Javadoc)

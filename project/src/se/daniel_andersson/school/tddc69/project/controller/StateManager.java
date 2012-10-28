@@ -31,7 +31,7 @@ public class StateManager implements StateChangeListener {
 	 * Initialize the all states.
 	 */
 	private void initAllStates() {
-		// TODO: Add states
+		// Here is where we add all the states to the manager.
 		states.add(new MenuState());
 		states.add(new HelpState());
 		states.add(new GameState());
@@ -53,7 +53,7 @@ public class StateManager implements StateChangeListener {
 	}
 
 	/**
-	 * Start current state.
+	 * Start current state. Also resets the size of the frame to match the new state.
 	 */
 	public void startCurrentState() {
 		stateFrame.add(states.get(currentState));

@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.view;
 
 import se.daniel_andersson.school.tddc69.project.controller.Game;
@@ -10,9 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GraphicalGameViewer.
+ * This is the class for the graphical part of the game. This will draw the game to the StateFrame.
  */
 @SuppressWarnings("serial")
 public class GraphicalGameViewer extends JComponent {
@@ -59,6 +55,7 @@ public class GraphicalGameViewer extends JComponent {
 
 	/**
 	 * Paint debug information.
+     * Player coordinates, Map related information and some game basic information.
 	 *
 	 * @param g2 the Graphical2D
 	 */
@@ -105,7 +102,7 @@ public class GraphicalGameViewer extends JComponent {
 	}
 
 	/**
-	 * Paint map.
+	 * Paints the map with the texture of each object.
 	 *
 	 * @param g2 the Graphical2D
 	 */
