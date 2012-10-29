@@ -1,6 +1,3 @@
-/*
- * 
- */
 package se.daniel_andersson.school.tddc69.project.model.player;
 
 import se.daniel_andersson.school.tddc69.project.model.player.Modes.Normal;
